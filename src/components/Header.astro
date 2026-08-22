@@ -25,21 +25,40 @@ const navItems = [
       </div>
     </a>
 
-    <!-- Top Contact & Address Badge -->
-    <div class="header-info">
+    <!-- Top Contact & Address Badge (Desktop) -->
+    <div class="header-info desktop-only">
       <div class="header-address">3330 W Laskey Rd · Toledo, OH 43623</div>
       <div class="header-contact">
         <a href="tel:4192140778" class="phone-link">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
           (419) 214-0778
         </a>
-        <span class="status-badge">• Open 7 Days</span>
+        <span class="status-badge">• Open 7 Days: 6am–10pm</span>
       </div>
+    </div>
+
+    <!-- Mobile Header Actions (Phone + Hamburger) -->
+    <div class="mobile-actions mobile-only">
+      <a href="tel:4192140778" class="mobile-call-btn" aria-label="Call Laskey's Laundry">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span>CALL</span>
+      </a>
+
+      <button id="mobile-menu-btn" class="hamburger-btn" aria-label="Toggle Navigation Menu" aria-expanded="false">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
     </div>
   </div>
 
-  <!-- Navigation Bar -->
-  <nav class="nav-bar">
+  <!-- Mobile Info Bar (Quick address & status banner) -->
+  <div class="mobile-subbar mobile-only">
+    <span>3330 W Laskey Rd · Open 6am–10pm Daily</span>
+  </div>
+
+  <!-- Desktop Navigation Bar -->
+  <nav class="nav-bar desktop-only">
     <div class="container nav-container">
       <div class="nav-links">
         {navItems.map((item) => (
@@ -59,32 +78,99 @@ const navItems = [
       </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Menu Drawer -->
+  <div id="mobile-menu" class="mobile-drawer" aria-hidden="true">
+    <div class="mobile-nav-links">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`mobile-nav-link ${activeTab === item.id ? 'active' : ''}`}
+        >
+          <span>{item.label}</span>
+          <span class="arrow">&rarr;</span>
+        </a>
+      ))}
+    </div>
+
+    <div class="mobile-drawer-footer">
+      <a href="/pickup-and-delivery" class="btn-retro-red mobile-cta-block">
+        SCHEDULE PICKUP ONLINE
+      </a>
+
+      <div class="mobile-drawer-contact">
+        <a href="tel:4192140778" class="drawer-phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          (419) 214-0778
+        </a>
+        <p class="drawer-address">3330 W Laskey Rd, Toledo, OH 43623</p>
+        <p class="drawer-hours">Open 7 Days a Week: 6:00 AM – 10:00 PM</p>
+      </div>
+    </div>
+  </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (!menuBtn || !mobileMenu) return;
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) {
+        mobileMenu.classList.remove('open');
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      } else {
+        mobileMenu.classList.add('open');
+        menuBtn.classList.add('active');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+      }
+    });
+
+    // Close menu on link click
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+  });
+</script>
 
 <style>
   .header-root {
     background: var(--bg-cream-light);
     border-bottom: 3px solid var(--border-dark);
+    position: relative;
+    z-index: 100;
   }
 
   .header-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 24px;
+    padding: 16px 24px;
     gap: 20px;
   }
 
   .brand-link {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     text-decoration: none;
   }
 
   .logo-image {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
     flex-shrink: 0;
   }
@@ -96,7 +182,7 @@ const navItems = [
 
   .logo-main {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     letter-spacing: 1px;
     line-height: 0.9;
     color: var(--text-dark);
@@ -104,8 +190,8 @@ const navItems = [
 
   .logo-sub {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px;
-    letter-spacing: 6px;
+    font-size: 14px;
+    letter-spacing: 5px;
     line-height: 1;
     color: var(--brand-red);
   }
@@ -132,7 +218,7 @@ const navItems = [
   .phone-link {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     color: var(--brand-red);
     text-decoration: none;
     font-weight: 700;
@@ -152,7 +238,7 @@ const navItems = [
     border: 1px solid #86efac;
   }
 
-  /* Navigation Bar */
+  /* Desktop Navigation Bar */
   .nav-bar {
     background: var(--text-dark);
     color: var(--bg-cream);
@@ -168,7 +254,6 @@ const navItems = [
   .nav-links {
     display: flex;
     gap: 4px;
-    overflow-x: auto;
   }
 
   .nav-link {
@@ -216,29 +301,196 @@ const navItems = [
     box-shadow: 3px 3px 0px #000000;
   }
 
-  @media (max-width: 768px) {
+  /* Mobile Specific Elements */
+  .mobile-only {
+    display: none;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+
+  .nav-bar.desktop-only {
+    display: block;
+  }
+
+  .header-info.desktop-only {
+    display: block;
+  }
+
+  .mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--brand-red);
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border: 2px solid var(--border-dark);
+    box-shadow: 2px 2px 0px #000;
+    text-decoration: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 9px 8px;
+    background: var(--text-dark);
+    border: 2px solid var(--border-dark);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
+  }
+
+  .hamburger-bar {
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hamburger-btn.active .hamburger-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-btn.active .hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-btn.active .hamburger-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .mobile-subbar {
+    background: var(--bg-cream-dark);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding: 6px 16px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  /* Mobile Menu Drawer */
+  .mobile-drawer {
+    display: none;
+    background: var(--text-dark);
+    color: #ffffff;
+    border-top: 2px solid var(--border-dark);
+    padding: 16px 20px 24px;
+  }
+
+  .mobile-drawer.open {
+    display: block;
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    color: #f3f4f6;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid transparent;
+    transition: all 0.15s ease;
+  }
+
+  .mobile-nav-link:hover, .mobile-nav-link.active {
+    background: rgba(255, 255, 255, 0.12);
+    border-left-color: var(--brand-red);
+    color: #ffffff;
+  }
+
+  .mobile-nav-link .arrow {
+    color: var(--brand-red);
+  }
+
+  .mobile-drawer-footer {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  }
+
+  .mobile-cta-block {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 18px;
+    transform: none !important;
+  }
+
+  .mobile-drawer-contact {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #9ca3af;
+  }
+
+  .drawer-phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--brand-red);
+    font-size: 1.15rem;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 6px;
+  }
+
+  .drawer-address {
+    color: #e5e7eb;
+    margin-bottom: 4px;
+  }
+
+  .drawer-hours {
+    color: #9ca3af;
+    font-size: 0.85rem;
+  }
+
+  /* Responsive Media Queries */
+  @media (max-width: 860px) {
+    .desktop-only {
+      display: none !important;
+    }
+    .mobile-only {
+      display: flex;
+    }
+    .mobile-subbar.mobile-only {
+      display: block;
+    }
     .header-top {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 16px;
+      padding: 12px 16px;
     }
-    .header-info {
-      text-align: left;
+    .logo-main {
+      font-size: 26px;
     }
-    .header-contact {
-      justify-content: flex-start;
+    .logo-sub {
+      font-size: 12px;
+      letter-spacing: 4px;
     }
-    .nav-container {
-      flex-direction: column;
-      align-items: stretch;
-      padding: 0;
-    }
-    .nav-links {
-      width: 100%;
-      padding: 0 12px;
-    }
-    .nav-cta-wrap {
-      display: none;
+    .logo-image {
+      width: 44px;
+      height: 44px;
     }
   }
 </style>
