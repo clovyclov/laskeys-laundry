@@ -18,10 +18,7 @@ const navItems = [
   <div class="container header-top">
     <!-- Brand Logo -->
     <a href="/" class="brand-link" aria-label="Laskey's Laundry Homepage">
-      <div class="logo-circle">
-        <div class="logo-outer"></div>
-        <div class="logo-inner"></div>
-      </div>
+      <img src="/logo.png" alt="Laskey's Laundry Logo" class="logo-image" />
       <div class="logo-text-wrap">
         <span class="logo-main">LASKEY'S</span>
         <span class="logo-sub">LAUNDRY</span>
@@ -85,29 +82,11 @@ const navItems = [
     text-decoration: none;
   }
 
-  .logo-circle {
-    position: relative;
-    width: 48px;
-    height: 48px;
+  .logo-image {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
     flex-shrink: 0;
-  }
-
-  .logo-outer {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    border: 4px solid var(--border-dark);
-  }
-
-  .logo-inner {
-    position: absolute;
-    top: 9px;
-    left: 9px;
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    border: 3px solid var(--brand-red);
   }
 
   .logo-text-wrap {

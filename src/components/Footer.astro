@@ -9,10 +9,13 @@
     <div class="footer-grid">
       <!-- Col 1: Brand Info -->
       <div class="footer-col brand-col">
-        <div class="footer-logo">
-          <span class="logo-main">LASKEY'S</span>
-          <span class="logo-sub">LAUNDRY</span>
-        </div>
+        <a href="/" class="footer-brand-wrap" aria-label="Laskey's Laundry Homepage">
+          <img src="/logo.png" alt="Laskey's Laundry Logo" class="footer-logo-img" />
+          <div class="footer-logo">
+            <span class="logo-main">LASKEY'S</span>
+            <span class="logo-sub">LAUNDRY</span>
+          </div>
+        </a>
         <p class="brand-desc">
           Toledo's favorite local laundromat. Self-service coin machines, premium drop-off wash & fold, and door-to-door pickup & delivery.
         </p>
@@ -106,6 +109,20 @@
     border-bottom: 2px solid var(--brand-red);
     display: inline-block;
     padding-bottom: 4px;
+  }
+
+  .footer-brand-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .footer-logo-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
   }
 
   .logo-main {
