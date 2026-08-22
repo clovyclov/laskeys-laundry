@@ -1,0 +1,254 @@
+---
+const photos = [
+  {
+    src: '/images/laskeys-laundry-building.webp',
+    alt: "Laskey's Laundry Storefront on W Laskey Rd",
+    caption: 'OUR SPOT ON LASKEY RD',
+    category: 'exterior',
+  },
+  {
+    src: '/images/IMG_7077.webp',
+    alt: 'Clean stainless steel dryers and folding tables',
+    caption: 'STAINLESS STACKED DRYERS',
+    category: 'dryers',
+  },
+  {
+    src: '/images/IMG_7078.webp',
+    alt: 'High-capacity washer banks at Laskey Laundry',
+    caption: 'HEAVY-DUTY WASHER BANKS',
+    category: 'washers',
+  },
+  {
+    src: '/images/IMG_7079.webp',
+    alt: 'Spacious folding tables and rolling carts',
+    caption: 'SPACIOUS FOLDING TABLES',
+    category: 'interior',
+  },
+  {
+    src: '/images/IMG_7080.webp',
+    alt: 'Clean and bright laundromat interior',
+    caption: 'BRIGHT & SPOTLESS ATMOSPHERE',
+    category: 'interior',
+  },
+  {
+    src: '/images/IMG_7081.webp',
+    alt: 'Fast efficient dryer lines',
+    caption: 'HIGH-HEAT EXPRESS DRYERS',
+    category: 'dryers',
+  },
+  {
+    src: '/images/IMG_7082.webp',
+    alt: 'Commercial grade wash drums for comforters',
+    caption: '80LB COMFORTER WASHERS',
+    category: 'washers',
+  },
+  {
+    src: '/images/IMG_7083.webp',
+    alt: 'Seating and waiting area',
+    caption: 'COMFORTABLE SEATING & TV',
+    category: 'interior',
+  },
+];
+---
+
+<section class="gallery-section">
+  <div class="container">
+    <div class="section-header text-center">
+      <span class="pill-badge">OUR FACILITY</span>
+      <h2 class="gallery-title">INSIDE LASKEY'S LAUNDRY</h2>
+      <p class="gallery-subtitle">
+        Take a look inside our clean, well-lit, fully equipped Toledo facility.
+      </p>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      {photos.map((item, idx) => (
+        <div
+          class="gallery-item polaroid-frame"
+          style={`transform: rotate(${idx % 2 === 0 ? '-1.5deg' : '1.5deg'});`}
+          data-src={item.src}
+          data-caption={item.caption}
+        >
+          <div class="polaroid-tape"></div>
+          <div class="img-wrapper">
+            <img src={item.src} alt={item.alt} loading="lazy" />
+          </div>
+          <div class="polaroid-caption font-bebas">{item.caption}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Modal Lightbox -->
+  <div id="gallery-modal" class="modal-overlay hidden" aria-hidden="true">
+    <div class="modal-content card-retro">
+      <button id="modal-close" class="modal-close-btn" aria-label="Close photo preview">&times;</button>
+      <img id="modal-img" src="" alt="Laskey's Laundry photo preview" />
+      <div id="modal-caption" class="modal-caption font-bebas"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('gallery-modal');
+    const modalImg = document.getElementById('modal-img') as HTMLImageElement;
+    const modalCaption = document.getElementById('modal-caption');
+    const closeBtn = document.getElementById('modal-close');
+
+    if (!modal || !modalImg || !modalCaption || !closeBtn) return;
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const src = item.getAttribute('data-src');
+        const caption = item.getAttribute('data-caption');
+        if (src && caption) {
+          modalImg.src = src;
+          modalCaption.textContent = caption;
+          modal.classList.remove('hidden');
+          modal.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
+
+    function closeModal() {
+      modal?.classList.add('hidden');
+      modal?.setAttribute('aria-hidden', 'true');
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  });
+</script>
+
+<style>
+  .gallery-section {
+    padding: 60px 0;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .gallery-title {
+    font-size: 3rem;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  .gallery-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 28px;
+  }
+
+  .gallery-item {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .gallery-item:hover {
+    transform: scale(1.03) rotate(0deg) !important;
+    z-index: 5;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  }
+
+  .img-wrapper {
+    height: 200px;
+    overflow: hidden;
+    background: #e5e5e5;
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .gallery-item:hover .img-wrapper img {
+    transform: scale(1.05);
+  }
+
+  .polaroid-caption {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    color: var(--text-dark);
+  }
+
+  /* Lightbox Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.hidden {
+    display: none;
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    background: #ffffff;
+    padding: 20px 20px 28px 20px;
+  }
+
+  .modal-close-btn {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background: var(--brand-red);
+    color: #ffffff;
+    border: 3px solid var(--border-dark);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #000;
+  }
+
+  .modal-content img {
+    width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    background: #111;
+  }
+
+  .modal-caption {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-top: 16px;
+    color: var(--text-dark);
+  }
+</style>

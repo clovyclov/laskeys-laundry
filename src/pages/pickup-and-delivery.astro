@@ -1,0 +1,250 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZipChecker from '../components/ZipChecker.astro';
+---
+
+<Layout title="Laundry Pickup & Delivery Toledo - Laskey's Laundry" activeTab="pickup-and-delivery">
+  <section class="page-header">
+    <div class="container">
+      <span class="pill-badge">DOOR-TO-DOOR CONVENIENCE</span>
+      <h1 class="header-title">LAUNDRY PICKUP & DELIVERY IN TOLEDO</h1>
+      <p class="header-desc">
+        Never spend your weekends doing laundry again! We pick up dirty laundry from your doorstep and bring it back fresh, clean, and folded.
+      </p>
+    </div>
+  </section>
+
+  <!-- Zip Checker & Coverage -->
+  <section class="zip-section">
+    <div class="container" style="max-width: 800px;">
+      <ZipChecker />
+    </div>
+  </section>
+
+  <!-- Pickup Request Form Section -->
+  <section class="form-section" id="pickup-form">
+    <div class="container" style="max-width: 760px;">
+      <div class="form-card card-retro">
+        <div class="form-header text-center">
+          <span class="pill-badge">ONLINE REQUEST</span>
+          <h2 class="form-title">SCHEDULE A PICKUP</h2>
+          <p class="form-desc">Fill out your details below and our driver will confirm your pickup window within 1 hour.</p>
+        </div>
+
+        <form id="schedule-form" class="request-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="full-name">Full Name *</label>
+              <input type="text" id="full-name" required placeholder="e.g. Sarah Miller" class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="phone-num">Phone Number *</label>
+              <input type="tel" id="phone-num" required placeholder="(419) 555-0199" class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-2">
+              <label for="street-address">Street Address *</label>
+              <input type="text" id="street-address" required placeholder="e.g. 1234 Secor Rd" class="form-input" />
+            </div>
+
+            <div class="form-group flex-1">
+              <label for="zip-code">ZIP Code *</label>
+              <input type="text" id="zip-code" required placeholder="43613" maxlength="5" class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pickup-date">Preferred Pickup Date *</label>
+              <input type="date" id="pickup-date" required class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label for="pickup-time">Time Window *</label>
+              <select id="pickup-time" class="form-input">
+                <option value="morning">Morning (8:00am - 12:00pm)</option>
+                <option value="afternoon">Afternoon (12:00pm - 4:00pm)</option>
+                <option value="evening">Evening (4:00pm - 7:00pm)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="detergent-pref">Detergent Choice</label>
+            <select id="detergent-pref" class="form-input">
+              <option value="tide">Tide Original</option>
+              <option value="gain">Gain Original Scent</option>
+              <option value="free-clear">Free & Clear Hypoallergenic (Fragrance-Free)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="special-notes">Special Instructions (Porch location, gate code, bedding, etc.)</label>
+            <textarea id="special-notes" rows="3" placeholder="e.g. Leave bag behind porch railing. Please hang dress shirts." class="form-input"></textarea>
+          </div>
+
+          <button type="submit" class="btn-retro-red" style="width: 100%; transform: none; font-size: 1.3rem; margin-top: 10px;">
+            CONFIRM PICKUP REQUEST
+          </button>
+        </form>
+
+        <div id="form-success" class="success-banner hidden card-dark">
+          <div class="success-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h3 class="font-bebas" style="font-size: 2rem; color: #ffffff;">PICKUP REQUEST RECEIVED!</h3>
+          <p style="color: #d1d5db; margin-top: 6px;">
+            Thank you! Our driver will text you at <span id="confirm-phone" style="color: var(--brand-red); font-weight: bold;"></span> to confirm your time window.
+          </p>
+          <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 12px;">Questions? Call us directly at (419) 214-0778.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('schedule-form') as HTMLFormElement;
+    const successBanner = document.getElementById('form-success');
+    const phoneInput = document.getElementById('phone-num') as HTMLInputElement;
+    const confirmPhone = document.getElementById('confirm-phone');
+
+    // Set default date to tomorrow
+    const dateInput = document.getElementById('pickup-date') as HTMLInputElement;
+    if (dateInput) {
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      dateInput.value = tomorrow.toISOString().split('T')[0];
+    }
+
+    if (form && successBanner) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (confirmPhone && phoneInput) {
+          confirmPhone.textContent = phoneInput.value || 'your phone number';
+        }
+        form.classList.add('hidden');
+        successBanner.classList.remove('hidden');
+        successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  });
+</script>
+
+<style>
+  .page-header {
+    background: var(--bg-cream-dark);
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--border-dark);
+  }
+
+  .header-title {
+    font-size: 3.8rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .header-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .zip-section {
+    padding: 60px 0 30px;
+  }
+
+  .form-section {
+    padding: 30px 0 60px;
+  }
+
+  .form-card {
+    padding: 40px;
+    background: #ffffff;
+  }
+
+  .form-title {
+    font-size: 2.4rem;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  .form-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+  }
+
+  .request-form.hidden {
+    display: none;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .flex-2 { flex: 2; }
+  .flex-1 { flex: 1; }
+
+  .form-group label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .form-input {
+    border: 2px solid var(--border-dark);
+    padding: 12px 14px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg-cream);
+    width: 100%;
+  }
+
+  .form-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: var(--brand-red);
+  }
+
+  .success-banner {
+    padding: 32px;
+    text-align: center;
+  }
+
+  .success-banner.hidden {
+    display: none;
+  }
+
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .form-row {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+</style>

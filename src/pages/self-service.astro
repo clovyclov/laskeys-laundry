@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AmenityClothesline from '../components/AmenityClothesline.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+
+const machines = [
+  {
+    size: '20 LB WASHER',
+    capacity: '1 - 2 Baskets',
+    ideal: 'Daily clothes, shirts, pants, undergarments.',
+    iconSvg: `<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="13" r="2"/><circle cx="7" cy="6" r="1" fill="currentColor"/></svg>`,
+  },
+  {
+    size: '30 LB WASHER',
+    capacity: '3 - 4 Baskets',
+    ideal: 'Full week of laundry or double bedding set.',
+    iconSvg: `<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="18" height="20" rx="2"/><circle cx="12" cy="13" r="6"/><circle cx="12" cy="13" r="3"/><circle cx="7" cy="6" r="1.2" fill="currentColor"/><circle cx="10" cy="6" r="1.2" fill="currentColor"/></svg>`,
+  },
+  {
+    size: '45 LB WASHER',
+    capacity: '5 - 6 Baskets',
+    ideal: 'Family laundry load or 1 King size comforter.',
+    iconSvg: `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><circle cx="12" cy="13" r="6.5"/><circle cx="12" cy="13" r="3"/><circle cx="6" cy="6" r="1.5" fill="currentColor"/><circle cx="9" cy="6" r="1.5" fill="currentColor"/><circle cx="12" cy="6" r="1.5" fill="currentColor"/></svg>`,
+  },
+  {
+    size: '60 LB MEGA WASHER',
+    capacity: '7 - 8 Baskets',
+    ideal: 'Multiple bulky blankets, sleeping bags & coats.',
+    iconSvg: `<svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="3"/><circle cx="12" cy="13" r="7"/><circle cx="12" cy="13" r="3.5"/><path d="M6 6h12"/></svg>`,
+  },
+  {
+    size: '80 LB GIANT WASHER',
+    capacity: '9+ Baskets',
+    ideal: 'Giant king comforters, heavy washable rugs, massive family loads.',
+    iconSvg: `<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="1.5" width="21" height="21" rx="4"/><circle cx="12" cy="13" r="7.5"/><circle cx="12" cy="13" r="4"/><path d="M5 6h14"/><path d="M12 2v2"/></svg>`,
+  },
+];
+---
+
+<Layout title="Self-Service Coin Laundromat - Laskey's Laundry Toledo" activeTab="self-service">
+  <section class="page-header">
+    <div class="container">
+      <span class="pill-badge">COIN & CARD MACHINES</span>
+      <h1 class="header-title">SELF-SERVICE COIN LAUNDROMAT</h1>
+      <p class="header-desc">
+        Toledo's premier self-service facility. Clean stainless steel Huebsch washers & dryers, giant 80lb comforter machines, and a comfortable space to wait.
+      </p>
+    </div>
+  </section>
+
+  <!-- Machine Guide Section -->
+  <section class="machine-section" id="machines">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>WASHER CAPACITY & MACHINE GUIDE</h2>
+        <p class="sub-text">Choose the perfect machine for your laundry size. All washers feature express extraction to cut dry times in half!</p>
+      </div>
+
+      <div class="machine-grid">
+        {machines.map((item) => (
+          <div class="machine-card card-retro">
+            <div class="card-top">
+              <div class="machine-icon" set:html={item.iconSvg} />
+              <div class="machine-size font-bebas">{item.size}</div>
+            </div>
+            <div class="capacity-tag font-bebas">CAPACITY: {item.capacity}</div>
+            <p class="ideal-text"><strong>Best For:</strong> {item.ideal}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Clothesline Amenities -->
+  <AmenityClothesline />
+
+  <!-- Why Choose Laskey's -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>THE LASKEY'S LAUNDRY DIFFERENCE</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box card-retro">
+          <div class="box-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>FAST 45-MINUTE WASH & DRY</h3>
+          <p>High-spin extraction removes maximum water from clothes so dryers finish in half the time.</p>
+        </div>
+
+        <div class="feature-box card-retro">
+          <div class="box-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M9 9.5a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-2.5 2.5s-2.5 1-2.5 2.5a2.5 2.5 0 0 0 5 0"/></svg>
+          </div>
+          <h3>GUARANTEED CHANGE MACHINES</h3>
+          <p>Dual quarter changers accepting $1, $5, $10, and $20 bills — always stocked and ready.</p>
+        </div>
+
+        <div class="feature-box card-retro">
+          <div class="box-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><rect x="4" y="11" width="16" height="11" rx="2"/><circle cx="12" cy="16" r="1"/></svg>
+          </div>
+          <h3>SOAP & VENDING ON SITE</h3>
+          <p>Forgot soap? Our vending carries Tide, Gain, Bounce dryer sheets, laundry bags, snacks, and cold beverages.</p>
+        </div>
+
+        <div class="feature-box card-retro">
+          <div class="box-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M17 2l-5 5-5-5"/></svg>
+          </div>
+          <h3>CLEAN, SAFE & ENTERTAINING</h3>
+          <p>Well-lit seating, flat-screen cable TVs, free high-speed Wi-Fi, and 24/7 security surveillance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <PhotoGallery />
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--bg-cream-dark);
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--border-dark);
+  }
+
+  .header-title {
+    font-size: 3.8rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .header-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .machine-section {
+    padding: 60px 0;
+  }
+
+  .sub-text {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+  }
+
+  .machine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .machine-card {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-top {
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .machine-icon {
+    margin-bottom: 8px;
+    color: var(--brand-red);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 56px;
+  }
+
+  .machine-size {
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--text-dark);
+  }
+
+  .capacity-tag {
+    background: var(--brand-red);
+    color: #ffffff;
+    padding: 4px 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+
+  .ideal-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .features-section {
+    padding: 60px 0;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 36px;
+  }
+
+  .feature-box {
+    padding: 32px;
+  }
+
+  .box-icon {
+    margin-bottom: 12px;
+    color: var(--brand-red);
+  }
+
+  .feature-box h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-box p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

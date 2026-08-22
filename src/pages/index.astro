@@ -1,0 +1,405 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AmenityClothesline from '../components/AmenityClothesline.astro';
+import PriceEstimator from '../components/PriceEstimator.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+---
+
+<Layout title="Laskey's Laundry - Toledo's Neighborhood Laundromat, Wash & Fold & Delivery" activeTab="home">
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-text-col">
+        <span class="pill-badge">FAMILY OWNED & OPERATED</span>
+        <h1 class="hero-headline">TOLEDO'S NEIGHBORHOOD LAUNDROMAT SINCE 1978</h1>
+        <p class="hero-body">
+          Two blocks off Laskey and Reynolds — self-service coin wash & dry, 80lb mega-washers for comforters, same-day drop-off wash & fold, and door-to-door delivery across Toledo.
+        </p>
+
+        <div class="hero-buttons">
+          <a
+            href="https://maps.google.com/?q=3350+W+Laskey+Rd+Toledo+OH+43613"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-retro-red"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            GET DIRECTIONS
+          </a>
+          <a href="tel:4192140778" class="btn-retro-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            CALL THE SHOP
+          </a>
+        </div>
+
+        <!-- Quick Features List -->
+        <div class="hero-badges">
+          <span>✔ Coin & Card Machines</span>
+          <span>✔ Drop-Off Wash & Fold</span>
+          <span>✔ Toledo Delivery Service</span>
+        </div>
+      </div>
+
+      <!-- Hero Polaroid Photo -->
+      <div class="hero-photo-col">
+        <div class="polaroid-frame hero-polaroid">
+          <div class="polaroid-tape"></div>
+          <div class="hero-img-wrap">
+            <img
+              src="/images/laskeys-laundry-building.webp"
+              alt="Laskey's Laundry Storefront Building at 3350 W Laskey Rd, Toledo, OH"
+            />
+          </div>
+          <div class="polaroid-caption font-bebas">OUR SPOT ON LASKEY RD</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOTHESLINE AMENITIES -->
+  <AmenityClothesline />
+
+  <!-- SERVICES SPOTLIGHT -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="pill-badge">THREE WAYS TO LAUNDRY</span>
+        <h2 class="section-title">CHOOSE YOUR LAUNDRY SERVICE</h2>
+        <p class="section-subtitle">
+          Whether you want to wash it yourself in 45 minutes, drop off your laundry, or have us pick it up from your porch.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service 1: Self Service -->
+        <div class="service-card card-retro">
+          <div class="service-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M9 9.5a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-2.5 2.5s-2.5 1-2.5 2.5a2.5 2.5 0 0 0 5 0"/></svg>
+          </div>
+          <h3 class="service-name">SELF-SERVICE COIN LAUNDRY</h3>
+          <p class="service-desc">
+            Spotless, air-conditioned laundromat with high-efficiency washers ranging from 20lb single loads to giant 80lb comforter washers.
+          </p>
+          <ul class="service-list">
+            <li>• High-speed express extraction dryers</li>
+            <li>• Quarters change machines on site</li>
+            <li>• Free high-speed Wi-Fi & TV</li>
+            <li>• Stainless folding tables & laundry carts</li>
+          </ul>
+          <a href="/self-service" class="service-btn">LEARN MORE & MACHINE SIZES &rarr;</a>
+        </div>
+
+        <!-- Service 2: Wash & Fold -->
+        <div class="service-card card-retro featured-card">
+          <div class="popular-tag">MOST POPULAR</div>
+          <div class="service-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="13" r="2"/></svg>
+          </div>
+          <h3 class="service-name">DROP-OFF WASH & FOLD</h3>
+          <p class="service-desc">
+            Drop off your laundry and let us do the work! We wash, dry, and neatly fold your clothes using top-brand detergents.
+          </p>
+          <ul class="service-list">
+            <li>• Only <strong>$1.50 per lb</strong> (10 lb minimum)</li>
+            <li>• Same-Day & Next-Day turnaround</li>
+            <li>• Tide, Gain, or Hypoallergenic soap</li>
+            <li>• Comforters & bedding expert care</li>
+          </ul>
+          <a href="/wash-and-fold" class="service-btn btn-featured">VIEW PRICING & DETAILS &rarr;</a>
+        </div>
+
+        <!-- Service 3: Pickup & Delivery -->
+        <div class="service-card card-retro">
+          <div class="service-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3 class="service-name">TOLEDO PICKUP & DELIVERY</h3>
+          <p class="service-desc">
+            The ultimate convenience for busy families, students, and professionals. We pick up from your doorstep and deliver back fresh.
+          </p>
+          <ul class="service-list">
+            <li>• <strong>FREE Delivery</strong> on orders over 30 lbs</li>
+            <li>• Easy online scheduling</li>
+            <li>• Servicing all major Toledo ZIP codes</li>
+            <li>• Porch pickup & drop-off options</li>
+          </ul>
+          <a href="/pickup-and-delivery" class="service-btn">CHECK YOUR ZIP CODE &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE COST ESTIMATOR -->
+  <section class="estimator-section">
+    <div class="container">
+      <PriceEstimator />
+    </div>
+  </section>
+
+  <!-- FACILITY PHOTO GALLERY -->
+  <PhotoGallery />
+
+  <!-- HOURS SIGN SECTION (Matching Clouet Design) -->
+  <section class="hours-sign-section">
+    <div class="container">
+      <div class="hours-card card-retro">
+        <div class="pin-tack"></div>
+        <h2 class="hours-card-title">STORE HOURS</h2>
+
+        <div class="hours-rows">
+          <div class="hours-row">
+            <span>Monday – Sunday</span>
+            <strong>6:00a – 10:00p</strong>
+          </div>
+          <div class="hours-row">
+            <span>Open 7 Days</span>
+            <strong>365 Days / Year</strong>
+          </div>
+        </div>
+
+        <div class="hours-footer-note">
+          Last wash starts one hour before close • Open 365 days a year
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* HERO SECTION */
+  .hero-section {
+    padding: 60px 0 40px 0;
+  }
+
+  .hero-container {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .hero-text-col {
+    flex: 1.1;
+  }
+
+  .hero-headline {
+    font-size: 4.5rem;
+    line-height: 0.95;
+    margin-top: 14px;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+  }
+
+  .hero-body {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 16px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    flex-wrap: wrap;
+  }
+
+  .hero-photo-col {
+    flex: 1;
+  }
+
+  .hero-polaroid {
+    transform: rotate(2.5deg);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .hero-img-wrap {
+    height: 320px;
+    background: #e5e5e5;
+    overflow: hidden;
+  }
+
+  .hero-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* SERVICES SPOTLIGHT */
+  .services-section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .service-card {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .featured-card {
+    border-color: var(--brand-red);
+    background: #ffffff;
+    box-shadow: 6px 6px 0px var(--brand-red);
+  }
+
+  .popular-tag {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    background: var(--brand-red);
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    padding: 2px 10px;
+    border: 2px solid var(--border-dark);
+  }
+
+  .service-icon {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+  }
+
+  .service-name {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .service-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-bottom: 28px;
+  }
+
+  .service-btn {
+    margin-top: auto;
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    color: var(--brand-red);
+    font-weight: bold;
+    transition: color 0.15s ease;
+  }
+
+  .service-btn:hover {
+    color: var(--brand-red-hover);
+    text-decoration: underline;
+  }
+
+  /* ESTIMATOR SECTION */
+  .estimator-section {
+    padding: 40px 0 60px;
+  }
+
+  /* HOURS SIGN SECTION */
+  .hours-sign-section {
+    background: var(--border-dark);
+    padding: 60px 0;
+  }
+
+  .hours-card {
+    background: var(--bg-cream);
+    padding: 40px;
+    max-width: 580px;
+    margin: 0 auto;
+    position: relative;
+    transform: rotate(-1deg);
+  }
+
+  .pin-tack {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: var(--brand-red);
+    border: 2px solid var(--border-dark);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hours-card-title {
+    text-align: center;
+    font-size: 2.4rem;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .hours-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.15rem;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(35, 34, 32, 0.25);
+  }
+
+  .hours-footer-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  @media (max-width: 992px) {
+    .hero-container {
+      flex-direction: column;
+    }
+    .hero-headline {
+      font-size: 3.5rem;
+    }
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

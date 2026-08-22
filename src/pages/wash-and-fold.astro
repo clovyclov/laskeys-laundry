@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PriceEstimator from '../components/PriceEstimator.astro';
+---
+
+<Layout title="Wash & Fold Drop-Off Laundry Service - Laskey's Laundry Toledo" activeTab="wash-and-fold">
+  <section class="page-header">
+    <div class="container">
+      <span class="pill-badge">DROP-OFF SERVICE</span>
+      <h1 class="header-title">DROP-OFF WASH & FOLD LAUNDRY</h1>
+      <p class="header-desc">
+        Save hours of your week! Drop off your dirty clothes with our attendants, and we'll wash, dry, and neatly fold everything for you.
+      </p>
+    </div>
+  </section>
+
+  <!-- Pricing Overview -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>TRANSPARENT DROP-OFF PRICING</h2>
+        <p class="sub-text">No hidden fees. Simple per-pound pricing for clothes, plus flat rates for large bedding items.</p>
+      </div>
+
+      <div class="pricing-cards">
+        <div class="price-card card-retro">
+          <div class="price-type">NEXT-DAY WASH & FOLD</div>
+          <div class="price-amount font-bebas">$1.50 <span class="per-lb">/ lb</span></div>
+          <p class="price-desc">10 lb minimum load. Ready in 24 hours.</p>
+          <ul class="price-features">
+            <li>✔ Washed, dried & hand-folded</li>
+            <li>✔ Separated whites & darks</li>
+            <li>✔ Choice of Tide, Gain, or Free & Clear</li>
+            <li>✔ Sealed in protective laundry wrap</li>
+          </ul>
+        </div>
+
+        <div class="price-card card-retro featured-price">
+          <div class="price-badge">EXPRESS SERVICE</div>
+          <div class="price-type">SAME-DAY EXPRESS</div>
+          <div class="price-amount font-bebas">$2.00 <span class="per-lb">/ lb</span></div>
+          <p class="price-desc">10 lb minimum. Drop off by 10am, ready by 4pm.</p>
+          <ul class="price-features">
+            <li>✔ Guaranteed same-day completion</li>
+            <li>✔ High-priority attendant washing</li>
+            <li>✔ Custom detergent & softener choices</li>
+            <li>✔ Text alert as soon as it's ready</li>
+          </ul>
+        </div>
+
+        <div class="price-card card-retro">
+          <div class="price-type">BEDDING & COMFORTERS</div>
+          <div class="price-amount font-bebas">$15.00+ <span class="per-lb">each</span></div>
+          <p class="price-desc">Flat rates for large items that don't fit home washers.</p>
+          <ul class="price-features">
+            <li>✔ Twin / Full Comforter: $15.00</li>
+            <li>✔ Queen / King Comforter: $18.00</li>
+            <li>✔ Sleeping Bags: $15.00</li>
+            <li>✔ Bath Mats & Washable Rugs: $8.00</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Estimator -->
+  <section class="estimator-wrapper">
+    <div class="container">
+      <PriceEstimator />
+    </div>
+  </section>
+
+  <!-- How Drop-off Works -->
+  <section class="steps-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <h2>HOW WASH & FOLD WORKS</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card card-retro">
+          <div class="step-num font-bebas">1</div>
+          <h3>DROP OFF AT THE COUNTER</h3>
+          <p>Bring your laundry bag to 3350 W Laskey Rd anytime during open hours.</p>
+        </div>
+
+        <div class="step-card card-retro">
+          <div class="step-num font-bebas">2</div>
+          <h3>WE WEIGH & RECORD PREFERENCES</h3>
+          <p>We weigh your clothes on certified digital scales and note your detergent/softener choices.</p>
+        </div>
+
+        <div class="step-card card-retro">
+          <div class="step-num font-bebas">3</div>
+          <h3>WE WASH, DRY & FOLD</h3>
+          <p>Your laundry is separated, washed in commercial Huebsch machines, dried, and crisply folded.</p>
+        </div>
+
+        <div class="step-card card-retro">
+          <div class="step-num font-bebas">4</div>
+          <h3>TEXT ALERT & PICKUP</h3>
+          <p>Receive a text notification as soon as your fresh laundry is wrapped and ready for pickup!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--bg-cream-dark);
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--border-dark);
+  }
+
+  .header-title {
+    font-size: 3.8rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .header-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .pricing-section {
+    padding: 60px 0;
+  }
+
+  .sub-text {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    margin-bottom: 36px;
+  }
+
+  .pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .price-card {
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-price {
+    border-color: var(--brand-red);
+    box-shadow: 6px 6px 0px var(--brand-red);
+  }
+
+  .price-badge {
+    position: absolute;
+    top: -14px;
+    right: 20px;
+    background: var(--brand-red);
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    padding: 2px 10px;
+    border: 2px solid var(--border-dark);
+  }
+
+  .price-type {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+  }
+
+  .price-amount {
+    font-size: 3.5rem;
+    color: var(--brand-red);
+    line-height: 1;
+    margin: 10px 0;
+  }
+
+  .per-lb {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+  }
+
+  .price-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 0.95rem;
+  }
+
+  .estimator-wrapper {
+    padding: 20px 0 60px;
+  }
+
+  .steps-section {
+    padding: 60px 0;
+    background: var(--bg-cream-dark);
+    border-top: 3px solid var(--border-dark);
+    border-bottom: 3px solid var(--border-dark);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .step-card {
+    padding: 24px;
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    background: var(--brand-red);
+    color: #ffffff;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px auto;
+    border: 2px solid var(--border-dark);
+  }
+
+  .step-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .step-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .pricing-cards {
+      grid-template-columns: 1fr;
+    }
+    .steps-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .steps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

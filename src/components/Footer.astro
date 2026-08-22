@@ -1,0 +1,259 @@
+---
+---
+
+<footer class="footer-root">
+  <!-- Retro Awning Accent Line -->
+  <div class="awning-stripe" style="height: 8px;"></div>
+
+  <div class="container footer-content">
+    <div class="footer-grid">
+      <!-- Col 1: Brand Info -->
+      <div class="footer-col brand-col">
+        <div class="footer-logo">
+          <span class="logo-main">LASKEY'S</span>
+          <span class="logo-sub">LAUNDRY</span>
+        </div>
+        <p class="brand-desc">
+          Toledo's trusted neighborhood laundromat since 1978. Self-service coin machines, premium drop-off wash & fold, and door-to-door pickup & delivery.
+        </p>
+        <div class="badge-tag">FAMILY-OWNED SINCE 1978</div>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Services</h3>
+        <ul class="footer-links">
+          <li><a href="/self-service">Self-Service Coin Laundry</a></li>
+          <li><a href="/wash-and-fold">Wash & Fold Drop-Off</a></li>
+          <li><a href="/pickup-and-delivery">Pickup & Delivery Service</a></li>
+          <li><a href="/self-service#machines">80lb Comforter Washers</a></li>
+          <li><a href="/wash-and-fold#pricing">Commercial & Bulk Laundry</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Hours -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Store Hours</h3>
+        <div class="hours-list">
+          <div class="hours-row">
+            <span>Monday – Sunday</span>
+            <strong>6:00am – 10:00pm</strong>
+          </div>
+          <div class="hours-row">
+            <span>Open 7 Days</span>
+            <strong>365 Days / Year</strong>
+          </div>
+        </div>
+        <p class="hours-note">* Last wash load starts 1 hour prior to close (9:00pm).</p>
+      </div>
+
+      <!-- Col 4: Contact & Directions -->
+      <div class="footer-col">
+        <h3 class="footer-heading">Visit Us</h3>
+        <p class="address-text">
+          <strong>Laskey's Laundry</strong><br />
+          3350 W Laskey Rd<br />
+          Toledo, OH 43613
+        </p>
+        <p class="contact-text">
+          <strong>Phone:</strong> <a href="tel:4192140778" class="footer-phone">(419) 214-0778</a>
+        </p>
+        <a
+          href="https://maps.google.com/?q=3350+W+Laskey+Rd+Toledo+OH+43613"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-map-btn"
+        >
+          GET MAP DIRECTIONS
+        </a>
+      </div>
+    </div>
+
+    <!-- Sub Footer Bar -->
+    <div class="sub-footer">
+      <div>© {new Date().getFullYear()} Laskey's Laundry · Toledo, OH. All Rights Reserved.</div>
+      <div class="sub-tag">CLEAN • BRIGHT • CONVENIENT</div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-root {
+    background: var(--text-dark);
+    color: var(--bg-cream);
+    margin-top: auto;
+    border-top: 3px solid var(--border-dark);
+  }
+
+  .footer-content {
+    padding-top: 56px;
+    padding-bottom: 24px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .footer-heading {
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    margin-bottom: 18px;
+    border-bottom: 2px solid var(--brand-red);
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+
+  .logo-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    line-height: 0.9;
+    color: #ffffff;
+    display: block;
+  }
+
+  .logo-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 5px;
+    color: var(--brand-red);
+    display: block;
+  }
+
+  .brand-desc {
+    font-size: 0.95rem;
+    color: #d1d5db;
+    margin: 16px 0 20px;
+    line-height: 1.6;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    background: rgba(217, 56, 30, 0.2);
+    color: #f87171;
+    border: 1px solid var(--brand-red);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    color: #d1d5db;
+    font-size: 0.95rem;
+    transition: color 0.15s ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--brand-red);
+    text-decoration: underline;
+  }
+
+  .hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    padding-bottom: 6px;
+  }
+
+  .hours-row span {
+    color: #9ca3af;
+  }
+
+  .hours-row strong {
+    color: #ffffff;
+  }
+
+  .hours-note {
+    font-size: 0.85rem;
+    color: #9ca3af;
+    margin-top: 12px;
+    font-style: italic;
+  }
+
+  .address-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #d1d5db;
+  }
+
+  .contact-text {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #d1d5db;
+  }
+
+  .footer-phone {
+    color: var(--brand-red);
+    font-weight: bold;
+  }
+
+  .footer-map-btn {
+    display: inline-block;
+    margin-top: 16px;
+    background: var(--brand-red);
+    color: #ffffff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    border: 2px solid #ffffff;
+    transition: all 0.15s ease;
+  }
+
+  .footer-map-btn:hover {
+    background: var(--brand-red-hover);
+  }
+
+  .sub-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    font-size: 0.85rem;
+    color: #9ca3af;
+  }
+
+  .sub-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 1.5px;
+    font-size: 1rem;
+    color: var(--brand-red);
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+    .sub-footer {
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,219 @@
+/* Laskey's Laundry - Design System & Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg-cream: #f8f6f0;
+  --bg-cream-light: #ffffff;
+  --bg-cream-dark: #eeeade;
+  --text-dark: #232220;
+  --text-muted: #52504b;
+  --brand-red: #358EE0;
+  --brand-red-hover: #2673ba;
+  --brand-blue: #1e6acb;
+  --brand-blue-hover: #154e96;
+  --border-dark: #232220;
+  --shadow-offset: 4px 4px 0px #232220;
+  --shadow-offset-hover: 6px 6px 0px #232220;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* Typography */
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 1px;
+}
+
+h1, h2, h3, h4, .heading-retro {
+  font-family: 'Bebas Neue', sans-serif;
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--text-dark);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Awning Striped Banner */
+.awning-stripe {
+  height: 16px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--brand-red) 0px,
+    var(--brand-red) 28px,
+    var(--bg-cream) 28px,
+    var(--bg-cream) 56px
+  );
+  border-bottom: 2px solid var(--border-dark);
+}
+
+/* Retro Tactile Cards & Containers */
+.card-retro {
+  background: var(--bg-cream-light);
+  border: 3px solid var(--border-dark);
+  box-shadow: var(--shadow-offset);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-retro:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-offset-hover);
+}
+
+.card-dark {
+  background: var(--text-dark);
+  color: var(--bg-cream);
+  border: 3px solid var(--border-dark);
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+/* Buttons & CTAs */
+.btn-retro-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--brand-red);
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+  padding: 12px 28px;
+  border: 3px solid var(--border-dark);
+  box-shadow: var(--shadow-offset);
+  transform: rotate(-1.5deg);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-retro-red:hover {
+  background: var(--brand-red-hover);
+  transform: rotate(-1.5deg) translateY(-2px);
+  box-shadow: var(--shadow-offset-hover);
+}
+
+.btn-retro-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+  padding: 12px 28px;
+  border: 3px solid var(--border-dark);
+  box-shadow: var(--shadow-offset);
+  transform: rotate(1deg);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-retro-secondary:hover {
+  background: #ffffff;
+  transform: rotate(1deg) translateY(-2px);
+  box-shadow: var(--shadow-offset-hover);
+}
+
+.btn-retro-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--brand-blue);
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: 1.5px;
+  padding: 12px 28px;
+  border: 3px solid var(--border-dark);
+  box-shadow: var(--shadow-offset);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-retro-blue:hover {
+  background: var(--brand-blue-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-offset-hover);
+}
+
+/* Polaroid Photo Frame */
+.polaroid-frame {
+  background: #ffffff;
+  padding: 14px 14px 38px 14px;
+  border: 3px solid var(--border-dark);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-6deg);
+  width: 50px;
+  height: 22px;
+  background: rgba(245, 235, 200, 0.85);
+  border: 1px solid rgba(210, 190, 150, 0.6);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-cream-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--brand-red);
+  border: 2px solid var(--border-dark);
+}
+
+/* Badge / Pills */
+.pill-badge {
+  display: inline-block;
+  background: var(--brand-red);
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border: 2px solid var(--border-dark);
+  transform: rotate(-2deg);
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}

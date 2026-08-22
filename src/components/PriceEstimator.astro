@@ -1,0 +1,308 @@
+---
+---
+
+<div class="estimator-card card-retro">
+  <div class="estimator-header">
+    <span class="pill-badge">ESTIMATE YOUR COST</span>
+    <h3 class="estimator-title">WASH & FOLD PRICE CALCULATOR</h3>
+    <p class="estimator-desc">
+      Drop off your dirty clothes or schedule a pickup. We weigh, wash, dry, and neatly fold everything for you!
+    </p>
+  </div>
+
+  <div class="estimator-body">
+    <!-- Slider input -->
+    <div class="input-group">
+      <div class="slider-header">
+        <label for="laundry-weight" class="input-label">Estimated Weight (lbs):</label>
+        <span id="weight-display" class="weight-value font-bebas">25 LBS</span>
+      </div>
+      <input
+        type="range"
+        id="laundry-weight"
+        min="10"
+        max="100"
+        step="5"
+        value="25"
+        class="custom-slider"
+      />
+      <div class="slider-hints">
+        <span>10 lbs (1 bag)</span>
+        <span>25 lbs (Average load)</span>
+        <span>50+ lbs (Family week)</span>
+      </div>
+    </div>
+
+    <!-- Service Tier Selection -->
+    <div class="options-grid">
+      <div class="option-col">
+        <label class="radio-card">
+          <input type="radio" name="service-type" value="standard" checked id="radio-standard" />
+          <div class="radio-content">
+            <span class="radio-title">Next-Day Drop-Off</span>
+            <span class="radio-price">$1.50 / lb</span>
+          </div>
+        </label>
+      </div>
+
+      <div class="option-col">
+        <label class="radio-card">
+          <input type="radio" name="service-type" value="express" id="radio-express" />
+          <div class="radio-content">
+            <span class="radio-title">Same-Day Express</span>
+            <span class="radio-price">$2.00 / lb</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Optional Add-ons -->
+    <div class="addons-section">
+      <div class="input-label" style="margin-bottom: 8px;">Optional Extras:</div>
+      <div class="checkbox-grid">
+        <label class="checkbox-item">
+          <input type="checkbox" id="add-comforter" />
+          <span>Comforter / Quilt (+$15.00)</span>
+        </label>
+
+        <label class="checkbox-item">
+          <input type="checkbox" id="add-delivery" />
+          <span>Pickup & Delivery ($5.00 or FREE 30lb+)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Estimate Result Box -->
+    <div class="result-box card-dark">
+      <div class="result-label">ESTIMATED TOTAL</div>
+      <div id="total-price" class="result-amount font-bebas">$37.50</div>
+      <div id="delivery-note" class="result-detail">Standard Wash & Fold • Ready in 24 hours</div>
+      <a href="/pickup-and-delivery" class="btn-retro-red" style="margin-top: 16px; width: 100%; text-align: center;">
+        SCHEDULE PICKUP NOW
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function updateCalculations() {
+    const weightInput = document.getElementById('laundry-weight') as HTMLInputElement;
+    const weightDisplay = document.getElementById('weight-display');
+    const radioExpress = document.getElementById('radio-express') as HTMLInputElement;
+    const addComforter = document.getElementById('add-comforter') as HTMLInputElement;
+    const addDelivery = document.getElementById('add-delivery') as HTMLInputElement;
+    const totalPriceEl = document.getElementById('total-price');
+    const deliveryNoteEl = document.getElementById('delivery-note');
+
+    if (!weightInput || !weightDisplay || !totalPriceEl || !deliveryNoteEl) return;
+
+    const weight = parseInt(weightInput.value, 10) || 10;
+    weightDisplay.textContent = `${weight} LBS`;
+
+    const isExpress = radioExpress && radioExpress.checked;
+    const rate = isExpress ? 2.00 : 1.50;
+
+    let subtotal = weight * rate;
+
+    if (addComforter && addComforter.checked) {
+      subtotal += 15.00;
+    }
+
+    let deliveryFee = 0;
+    const isDeliveryChecked = addDelivery && addDelivery.checked;
+    if (isDeliveryChecked) {
+      if (weight >= 30) {
+        deliveryFee = 0;
+      } else {
+        deliveryFee = 5.00;
+      }
+      subtotal += deliveryFee;
+    }
+
+    totalPriceEl.textContent = `$${subtotal.toFixed(2)}`;
+
+    let note = isExpress ? 'Express Same-Day • Ready in 6 hours' : 'Standard Wash & Fold • Ready in 24 hours';
+    if (isDeliveryChecked) {
+      note += weight >= 30 ? ' • FREE Delivery (30+ lbs)' : ' • $5.00 Delivery Fee';
+    }
+    deliveryNoteEl.textContent = note;
+  }
+
+  // Event Listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    const weightInput = document.getElementById('laundry-weight');
+    const radios = document.querySelectorAll('input[name="service-type"]');
+    const addComforter = document.getElementById('add-comforter');
+    const addDelivery = document.getElementById('add-delivery');
+
+    if (weightInput) weightInput.addEventListener('input', updateCalculations);
+    radios.forEach(r => r.addEventListener('change', updateCalculations));
+    if (addComforter) addComforter.addEventListener('change', updateCalculations);
+    if (addDelivery) addDelivery.addEventListener('change', updateCalculations);
+
+    updateCalculations();
+  });
+</script>
+
+<style>
+  .estimator-card {
+    padding: 32px;
+    background: #ffffff;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .estimator-header {
+    margin-bottom: 24px;
+  }
+
+  .estimator-title {
+    font-size: 2.2rem;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  .estimator-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .input-group {
+    margin-bottom: 24px;
+    background: var(--bg-cream);
+    padding: 16px;
+    border: 2px solid var(--border-dark);
+  }
+
+  .slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .input-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+  }
+
+  .weight-value {
+    font-size: 1.8rem;
+    color: var(--brand-red);
+  }
+
+  .custom-slider {
+    width: 100%;
+    height: 10px;
+    accent-color: var(--brand-red);
+    cursor: pointer;
+  }
+
+  .slider-hints {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .radio-card {
+    display: block;
+    cursor: pointer;
+  }
+
+  .radio-card input {
+    display: none;
+  }
+
+  .radio-content {
+    border: 2px solid var(--border-dark);
+    padding: 14px;
+    text-align: center;
+    background: #ffffff;
+    transition: all 0.15s ease;
+  }
+
+  .radio-card input:checked + .radio-content {
+    background: var(--bg-cream-dark);
+    border-color: var(--brand-red);
+    box-shadow: 2px 2px 0px var(--brand-red);
+  }
+
+  .radio-title {
+    display: block;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  .radio-price {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--brand-red);
+    margin-top: 2px;
+  }
+
+  .addons-section {
+    margin-bottom: 24px;
+  }
+
+  .checkbox-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .checkbox-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--brand-red);
+  }
+
+  .result-box {
+    padding: 24px;
+    text-align: center;
+  }
+
+  .result-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 1.5px;
+    color: #9ca3af;
+  }
+
+  .result-amount {
+    font-size: 3.5rem;
+    color: #ffffff;
+    line-height: 1;
+    margin: 4px 0;
+  }
+
+  .result-detail {
+    font-size: 0.9rem;
+    color: #d1d5db;
+  }
+
+  @media (max-width: 600px) {
+    .options-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
