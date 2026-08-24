@@ -3,9 +3,9 @@
 
 <div class="zip-checker-card card-retro">
   <div class="zip-header">
-    <span class="pill-badge">TOLEDO AREA DELIVERY</span>
-    <h3 class="zip-title">CHECK PICKUP & DELIVERY IN YOUR NEIGHBORHOOD</h3>
-    <p class="zip-desc">Enter your 5-digit ZIP code to confirm door-to-door laundry service availability.</p>
+    <span class="pill-badge">TOLEDO AREA DELIVERY ROUTES</span>
+    <h3 class="zip-title">CHECK UPCOMING DELIVERY IN YOUR NEIGHBORHOOD</h3>
+    <p class="zip-desc">Enter your 5-digit ZIP code to see if your area is on our upcoming door-to-door delivery route.</p>
   </div>
 
   <div class="zip-input-row">
@@ -27,11 +27,11 @@
   <div class="delivery-features">
     <div class="feature-item">
       <span class="feature-icon">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
       </span>
       <div>
-        <strong>Door-to-Door Service</strong>
-        <p>We pick up from your porch or doorstep and return fresh folded clothes in 24 hours.</p>
+        <strong>Door-to-Door Service (Launching Soon)</strong>
+        <p>We'll pick up from your porch or doorstep and return fresh folded clothes in 24 hours.</p>
       </div>
     </div>
     <div class="feature-item">
@@ -73,16 +73,16 @@
       if (VALID_ZIPS.includes(val)) {
         result.className = 'zip-result success';
         result.innerHTML = `
-          <strong>YES! We service ZIP ${val}!</strong>
-          <p style="margin-top: 4px; font-size: 0.9rem;">Free pickup available on orders over 30 lbs. Next pickup window tomorrow morning.</p>
-          <a href="#pickup-form" class="btn-retro-red" style="margin-top: 12px; transform: none; font-size: 1rem; padding: 8px 18px;">REQUEST PICKUP NOW</a>
+          <strong>YES! ZIP ${val} is in our upcoming launch zone!</strong>
+          <p style="margin-top: 4px; font-size: 0.9rem;">Join our early waitlist below to get notified the day delivery starts.</p>
+          <a href="#pickup-form" class="btn-retro-red" style="margin-top: 12px; transform: none; font-size: 1rem; padding: 8px 18px;">JOIN EARLY WAITLIST</a>
         `;
         result.classList.remove('hidden');
       } else {
         result.className = 'zip-result warning';
         result.innerHTML = `
-          <strong>ZIP ${val} is just outside our standard route.</strong>
-          <p style="margin-top: 4px; font-size: 0.9rem;">Give us a quick call at <strong>(419) 214-0778</strong> — we often accommodate special nearby routes!</p>
+          <strong>ZIP ${val} is currently outside our primary launch zone.</strong>
+          <p style="margin-top: 4px; font-size: 0.9rem;">Call us at <strong>(419) 214-0778</strong> or drop off your laundry in person at 3330 W Laskey Rd (6am–7pm daily)!</p>
         `;
         result.classList.remove('hidden');
       }

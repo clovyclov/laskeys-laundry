@@ -7,9 +7,9 @@ const { activeTab = 'home' } = Astro.props;
 
 const navItems = [
   { id: 'home', label: 'Home', href: '/' },
-  { id: 'self-service', label: 'Self-Service Coin', href: '/self-service' },
+  { id: 'self-service', label: 'Self-Service Coin & Card', href: '/self-service' },
   { id: 'wash-and-fold', label: 'Wash & Fold Drop-Off', href: '/wash-and-fold' },
-  { id: 'pickup-and-delivery', label: 'Pickup & Delivery', href: '/pickup-and-delivery' },
+  { id: 'pickup-and-delivery', label: 'Pickup & Delivery (Coming Soon)', href: '/pickup-and-delivery' },
   { id: 'location', label: 'Hours & Location', href: '/location' },
 ];
 ---
@@ -54,7 +54,7 @@ const navItems = [
 
   <!-- Mobile Info Bar (Quick address & status banner) -->
   <div class="mobile-subbar mobile-only">
-    <span>3330 W Laskey Rd · Open 6am–10pm Daily</span>
+    <span>3330 W Laskey Rd · Open 6am–10pm Daily · ATM On Site</span>
   </div>
 
   <!-- Desktop Navigation Bar -->
@@ -72,8 +72,8 @@ const navItems = [
       </div>
 
       <div class="nav-cta-wrap">
-        <a href="/pickup-and-delivery" class="nav-cta-btn">
-          <span>SCHEDULE PICKUP</span>
+        <a href="/wash-and-fold" class="nav-cta-btn">
+          <span>DROP-OFF WASH & FOLD</span>
         </a>
       </div>
     </div>
@@ -94,8 +94,8 @@ const navItems = [
     </div>
 
     <div class="mobile-drawer-footer">
-      <a href="/pickup-and-delivery" class="btn-retro-red mobile-cta-block">
-        SCHEDULE PICKUP ONLINE
+      <a href="/wash-and-fold" class="btn-retro-red mobile-cta-block">
+        DROP-OFF WASH & FOLD (6AM–7PM)
       </a>
 
       <div class="mobile-drawer-contact">
@@ -104,7 +104,7 @@ const navItems = [
           (419) 214-0778
         </a>
         <p class="drawer-address">3330 W Laskey Rd, Toledo, OH 43623</p>
-        <p class="drawer-hours">Open 7 Days a Week: 6:00 AM – 10:00 PM</p>
+        <p class="drawer-hours">Self-Service: 6am–10pm • Drop-Off: 6am–7pm (Cash Only)</p>
       </div>
     </div>
   </div>

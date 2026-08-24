@@ -4,8 +4,8 @@ import PhotoGallery from '../components/PhotoGallery.astro';
 
 const faqs = [
   {
-    q: 'Do your machines take quarters or cards?',
-    a: 'Our self-service washers and dryers are coin-operated. We have two high-capacity change machines on site that convert $1, $5, $10, and $20 bills into quarters instantly.',
+    q: 'Do your machines take credit cards or quarters?',
+    a: 'Our self-service washers and dryers accept both credit cards and quarters directly at the machine! We also have dual bill-to-quarter change machines and an on-site ATM for your convenience.',
   },
   {
     q: 'Can I wash giant king-size comforters and heavy blankets?',
@@ -16,12 +16,12 @@ const faqs = [
     a: 'Our high-efficiency washers complete a full cycle in about 25–30 minutes. Thanks to high-speed water extraction, our dryers finish most loads in 15–20 minutes! You can be done in under 45 minutes.',
   },
   {
-    q: 'How does Drop-off Wash & Fold work?',
-    a: 'Simply drop your dirty laundry off at our counter during open hours. We weigh your load, record your detergent preferences, wash, dry, and neatly fold your clothes. You’ll get a text message when it’s ready!',
+    q: 'How does Drop-off Wash & Fold work and what are the hours?',
+    a: 'Drop off your dirty laundry at our counter between 6:00 AM and 7:00 PM daily. Please note drop-off service is Cash Only (an on-site ATM is available). Standard next-day is $1.50/lb, and same-day express / bedding is $2.00/lb.',
   },
   {
-    q: 'What are your delivery options for Toledo residents?',
-    a: 'We offer door-to-door pickup and delivery across Toledo (43613, 43612, 43623, 43614, etc.). Delivery is FREE on orders over 30 lbs, or a flat $5 fee for smaller loads.',
+    q: 'Is pickup and delivery available?',
+    a: 'Door-to-door pickup and delivery is launching soon across Toledo! Check our Pickup & Delivery page to verify your neighborhood and join our early access waitlist.',
   },
   {
     q: 'Is there someone on staff to help me?',
@@ -36,7 +36,7 @@ const faqs = [
       <span class="pill-badge">VISIT OUR STORE</span>
       <h1 class="header-title">HOURS, LOCATION & DIRECTIONS</h1>
       <p class="header-desc">
-        Located on W Laskey Rd near Reynolds Rd. Open 7 days a week with bright seating, free Wi-Fi, and clean machines.
+        Located on W Laskey Rd near Reynolds Rd. Open 7 days a week with bright seating, free Wi-Fi, credit card & coin machines, and on-site ATM.
       </p>
     </div>
   </section>
@@ -56,8 +56,16 @@ const faqs = [
 
           <div class="hours-table">
             <div class="hours-item">
-              <span>Monday – Sunday</span>
+              <span>Laundromat (Self-Service)</span>
               <strong>6:00 AM – 10:00 PM</strong>
+            </div>
+            <div class="hours-item">
+              <span>Wash & Fold Drop-Off</span>
+              <strong>6:00 AM – 7:00 PM</strong>
+            </div>
+            <div class="hours-item">
+              <span>Drop-Off Payment</span>
+              <strong style="color: var(--brand-red);">Cash Only (ATM On Site)</strong>
             </div>
             <div class="hours-item">
               <span>Open 7 Days</span>

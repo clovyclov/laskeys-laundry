@@ -3,13 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import ZipChecker from '../components/ZipChecker.astro';
 ---
 
-<Layout title="Laundry Pickup & Delivery Toledo - Laskey's Laundry" activeTab="pickup-and-delivery">
+<Layout title="Laundry Pickup & Delivery (Coming Soon) - Laskey's Laundry Toledo" activeTab="pickup-and-delivery">
   <section class="page-header">
     <div class="container">
-      <span class="pill-badge">DOOR-TO-DOOR CONVENIENCE</span>
-      <h1 class="header-title">LAUNDRY PICKUP & DELIVERY IN TOLEDO</h1>
+      <span class="pill-badge" style="background: var(--brand-red); color: #fff;">LAUNCHING SOON IN TOLEDO</span>
+      <h1 class="header-title">LAUNDRY PICKUP & DELIVERY (COMING SOON)</h1>
       <p class="header-desc">
-        Never spend your weekends doing laundry again! We pick up dirty laundry from your doorstep and bring it back fresh, clean, and folded.
+        We are preparing our door-to-door laundry pickup & delivery service across Toledo! Check your neighborhood ZIP code below and join our early access waitlist to be first in line when we launch.
       </p>
     </div>
   </section>
@@ -26,9 +26,9 @@ import ZipChecker from '../components/ZipChecker.astro';
     <div class="container" style="max-width: 760px;">
       <div class="form-card card-retro">
         <div class="form-header text-center">
-          <span class="pill-badge">ONLINE REQUEST</span>
-          <h2 class="form-title">SCHEDULE A PICKUP</h2>
-          <p class="form-desc">Fill out your details below and our driver will confirm your pickup window within 1 hour.</p>
+          <span class="pill-badge">EARLY ACCESS WAITLIST</span>
+          <h2 class="form-title">JOIN THE DELIVERY LAUNCH LIST</h2>
+          <p class="form-desc">Be the first to know when our Toledo delivery van starts servicing your street. Plus, get free delivery on your first order!</p>
         </div>
 
         <form id="schedule-form" class="request-form">
@@ -46,8 +46,8 @@ import ZipChecker from '../components/ZipChecker.astro';
 
           <div class="form-row">
             <div class="form-group flex-2">
-              <label for="street-address">Street Address *</label>
-              <input type="text" id="street-address" required placeholder="e.g. 1234 Secor Rd" class="form-input" />
+              <label for="street-address">Street Address (Optional)</label>
+              <input type="text" id="street-address" placeholder="e.g. 1234 Secor Rd" class="form-input" />
             </div>
 
             <div class="form-group flex-1">
@@ -56,24 +56,8 @@ import ZipChecker from '../components/ZipChecker.astro';
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="pickup-date">Preferred Pickup Date *</label>
-              <input type="date" id="pickup-date" required class="form-input" />
-            </div>
-
-            <div class="form-group">
-              <label for="pickup-time">Time Window *</label>
-              <select id="pickup-time" class="form-input">
-                <option value="morning">Morning (8:00am - 12:00pm)</option>
-                <option value="afternoon">Afternoon (12:00pm - 4:00pm)</option>
-                <option value="evening">Evening (4:00pm - 7:00pm)</option>
-              </select>
-            </div>
-          </div>
-
           <div class="form-group">
-            <label for="detergent-pref">Detergent Choice</label>
+            <label for="detergent-pref">Preferred Detergent</label>
             <select id="detergent-pref" class="form-input">
               <option value="tide">Tide Original</option>
               <option value="gain">Gain Original Scent</option>
@@ -82,12 +66,12 @@ import ZipChecker from '../components/ZipChecker.astro';
           </div>
 
           <div class="form-group">
-            <label for="special-notes">Special Instructions (Porch location, gate code, bedding, etc.)</label>
-            <textarea id="special-notes" rows="3" placeholder="e.g. Leave bag behind porch railing. Please hang dress shirts." class="form-input"></textarea>
+            <label for="special-notes">Notes or Questions</label>
+            <textarea id="special-notes" rows="3" placeholder="e.g. Interested in weekly family pickup or commercial linen service..." class="form-input"></textarea>
           </div>
 
           <button type="submit" class="btn-retro-red" style="width: 100%; transform: none; font-size: 1.3rem; margin-top: 10px;">
-            CONFIRM PICKUP REQUEST
+            JOIN DELIVERY WAITLIST
           </button>
         </form>
 
@@ -95,11 +79,11 @@ import ZipChecker from '../components/ZipChecker.astro';
           <div class="success-icon">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--brand-red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
-          <h3 class="font-bebas" style="font-size: 2rem; color: #ffffff;">PICKUP REQUEST RECEIVED!</h3>
+          <h3 class="font-bebas" style="font-size: 2rem; color: #ffffff;">YOU'RE ON THE WAITLIST!</h3>
           <p style="color: #d1d5db; margin-top: 6px;">
-            Thank you! Our driver will text you at <span id="confirm-phone" style="color: var(--brand-red); font-weight: bold;"></span> to confirm your time window.
+            Thank you! We will notify you via text at <span id="confirm-phone" style="color: var(--brand-red); font-weight: bold;"></span> as soon as our Toledo delivery service launches.
           </p>
-          <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 12px;">Questions? Call us directly at (419) 214-0778.</p>
+          <p style="font-size: 0.85rem; color: #9ca3af; margin-top: 12px;">In the meantime, feel free to visit us for drop-off wash & fold (6am-7pm daily) at 3330 W Laskey Rd.</p>
         </div>
       </div>
     </div>
