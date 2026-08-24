@@ -11,30 +11,120 @@ interface Props {
 
 const {
   title = "Laskey's Laundry - Toledo's Neighborhood Laundromat & Delivery",
-  description = "Coin-operated laundromat, drop-off wash & fold service, and door-to-door laundry pickup & delivery in Toledo, OH. Clean, bright, high-capacity washers and dryers.",
+  description = "Coin & credit card laundromat, same-day drop-off wash & fold, and 80lb comforter mega-washers in Toledo, OH. Clean, bright, on-site ATM, open 7 days a week.",
   activeTab = "home"
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, 'https://laskeyslaundry.com').href;
+const socialImage = 'https://laskeyslaundry.com/images/laskeys-laundry-building.webp';
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Laundromat",
+  "name": "Laskey's Laundry",
+  "image": socialImage,
+  "logo": "https://laskeyslaundry.com/logo.png",
+  "@id": "https://laskeyslaundry.com/#business",
+  "url": "https://laskeyslaundry.com",
+  "telephone": "+1-419-214-0778",
+  "priceRange": "$",
+  "paymentAccepted": ["Cash", "Credit Card"],
+  "currenciesAccepted": "USD",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3330 W Laskey Rd",
+    "addressLocality": "Toledo",
+    "addressRegion": "OH",
+    "postalCode": "43623",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.7142,
+    "longitude": -83.6285
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "06:00",
+      "closes": "22:00"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Laskey's Laundry Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Self-Service Coin & Credit Card Laundromat",
+          "description": "High-efficiency commercial Huebsch washers (20lb to 80lb) and high-heat express dryers."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Drop-Off Wash and Fold Service",
+          "description": "Professional attendant wash, dry, and fold service. Next-day $1.50/lb, Same-day express $2.00/lb. Cash only."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Bulky Comforter & Bedding Washing",
+          "description": "80lb mega washers designed for king comforters, quilts, rugs, and heavy blankets."
+        }
+      }
+    ]
+  }
+};
 ---
 
-<!xhtml>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
 
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="Laskey's Laundry, Toledo laundromat, coin laundry Toledo, wash and fold Toledo, laundry delivery Toledo, coin machines Toledo OH, 3330 W Laskey Rd, 43623" />
+    <meta name="keywords" content="Laskey's Laundry, Toledo laundromat, coin laundry Toledo, wash and fold Toledo, laundry delivery Toledo, coin machines Toledo OH, credit card laundromat, 3330 W Laskey Rd, 43623, Laskey and Secor" />
+    <meta name="robots" content="index, follow" />
 
-    <!-- Open Graph -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Laskey's Laundry" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://laskeyslaundry.com" />
-    <meta property="og:image" content="/images/laskeys-laundry-building.webp" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content="Laskey's Laundry storefront in Toledo, OH" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <!-- JSON-LD LocalBusiness Structured Data for Google Rich Results -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
   <body>
     <!-- Top Awning Stripes Accent -->
