@@ -301,9 +301,9 @@ const navItems = [
     box-shadow: 3px 3px 0px #000000;
   }
 
-  /* Mobile Specific Elements */
+  /* Responsive Display Utility Classes */
   .mobile-only {
-    display: none;
+    display: none !important;
   }
 
   .desktop-only {
@@ -319,7 +319,7 @@ const navItems = [
   }
 
   .mobile-actions {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 10px;
   }
@@ -473,10 +473,13 @@ const navItems = [
       display: none !important;
     }
     .mobile-only {
-      display: flex;
+      display: flex !important;
+    }
+    .mobile-actions {
+      display: flex !important;
     }
     .mobile-subbar.mobile-only {
-      display: block;
+      display: block !important;
     }
     .header-top {
       padding: 12px 16px;
@@ -491,6 +494,12 @@ const navItems = [
     .logo-image {
       width: 44px;
       height: 44px;
+    }
+  }
+
+  @media (min-width: 861px) {
+    .mobile-drawer {
+      display: none !important;
     }
   }
 </style>
