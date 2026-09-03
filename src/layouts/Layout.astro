@@ -163,5 +163,22 @@ const schemaData = {
 
     <!-- Site Footer -->
     <Footer />
+
+    <!-- GTM Event Dispatcher for Directions & Conversion Tracking -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.btn-get-directions').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: 'get_directions',
+              event_category: 'engagement',
+              event_label: btn.getAttribute('data-gtm-label') || 'directions_click',
+              button_id: btn.id || 'get-directions',
+            });
+          });
+        });
+      });
+    </script>
   </body>
 </html>
