@@ -78,6 +78,19 @@ const photos = [
         </div>
       ))}
     </div>
+
+    <!-- Gallery CTA: Get Directions Button -->
+    <div class="gallery-cta text-center">
+      <a
+        href="https://maps.google.com/?q=3330+W+Laskey+Rd+Toledo+OH+43623"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-retro-red gallery-btn"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        GET DIRECTIONS
+      </a>
+    </div>
   </div>
 
   <!-- Modal Lightbox -->
@@ -250,5 +263,19 @@ const photos = [
     font-size: 1.8rem;
     margin-top: 16px;
     color: var(--text-dark);
+  }
+
+  .gallery-cta {
+    margin-top: 48px;
+  }
+
+  .gallery-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    padding: 14px 32px;
+    text-decoration: none;
+    letter-spacing: 1.5px;
   }
 </style>
