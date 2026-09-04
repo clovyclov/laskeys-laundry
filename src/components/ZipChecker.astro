@@ -71,6 +71,9 @@
       }
 
       if (VALID_ZIPS.includes(val)) {
+        const formZip = document.getElementById('zip-code') as HTMLInputElement | null;
+        if (formZip) formZip.value = val;
+
         result.className = 'zip-result success';
         result.innerHTML = `
           <strong>YES! ZIP ${val} is in our upcoming launch zone!</strong>

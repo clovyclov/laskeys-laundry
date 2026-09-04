@@ -35,42 +35,63 @@ import ZipChecker from '../components/ZipChecker.astro';
           <div class="form-row">
             <div class="form-group">
               <label for="full-name">Full Name *</label>
-              <input type="text" id="full-name" required placeholder="e.g. Sarah Miller" class="form-input" />
+              <input type="text" id="full-name" name="full_name" required placeholder="e.g. Sarah Miller" class="form-input" />
             </div>
 
             <div class="form-group">
               <label for="phone-num">Phone Number *</label>
-              <input type="tel" id="phone-num" required placeholder="(419) 555-0199" class="form-input" />
+              <input type="tel" id="phone-num" name="phone" required placeholder="(419) 555-0199" class="form-input" />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group flex-2">
               <label for="street-address">Street Address (Optional)</label>
-              <input type="text" id="street-address" placeholder="e.g. 1234 Secor Rd" class="form-input" />
+              <input type="text" id="street-address" name="street_address" placeholder="e.g. 1234 Secor Rd" class="form-input" />
             </div>
 
             <div class="form-group flex-1">
               <label for="zip-code">ZIP Code *</label>
-              <input type="text" id="zip-code" required placeholder="43623" maxlength="5" class="form-input" />
+              <input type="text" id="zip-code" name="zip_code" required placeholder="43623" maxlength="5" class="form-input" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="preferred-date">Preferred First Pickup Date</label>
+              <div class="date-input-wrapper">
+                <input type="date" id="preferred-date" name="preferred_date" class="form-input" />
+                <span class="date-calendar-icon" aria-hidden="true">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="form-group flex-1">
+              <label for="detergent-pref">Preferred Detergent</label>
+              <select id="detergent-pref" name="detergent" class="form-input">
+                <option value="Tide Original">Tide Original</option>
+                <option value="Gain Original Scent">Gain Original Scent</option>
+                <option value="Free & Clear Hypoallergenic (Fragrance-Free)">Free & Clear Hypoallergenic (Fragrance-Free)</option>
+              </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="detergent-pref">Preferred Detergent</label>
-            <select id="detergent-pref" class="form-input">
-              <option value="tide">Tide Original</option>
-              <option value="gain">Gain Original Scent</option>
-              <option value="free-clear">Free & Clear Hypoallergenic (Fragrance-Free)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
             <label for="special-notes">Notes or Questions</label>
-            <textarea id="special-notes" rows="3" placeholder="e.g. Interested in weekly family pickup or commercial linen service..." class="form-input"></textarea>
+            <textarea id="special-notes" name="notes" rows="3" placeholder="e.g. Interested in weekly family pickup or commercial linen service..." class="form-input"></textarea>
           </div>
 
-          <button type="submit" class="btn-retro-red" style="width: 100%; transform: none; font-size: 1.3rem; margin-top: 10px;">
+          <div id="form-error" class="hidden" style="background: rgba(220, 38, 38, 0.15); border: 1px solid var(--brand-red); color: #fff; padding: 12px 16px; border-radius: 6px; margin-bottom: 15px; font-size: 0.95rem;">
+            Sorry, there was an issue submitting your request. Please try again or call us at (419) 214-0778.
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn-retro-red" style="width: 100%; transform: none; font-size: 1.3rem; margin-top: 10px;">
             JOIN DELIVERY WAITLIST
           </button>
         </form>
@@ -91,29 +112,124 @@ import ZipChecker from '../components/ZipChecker.astro';
 </Layout>
 
 <script>
+  const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/HvAYChUFuCk6krO0Qu5L/webhook-trigger/b0b534b9-a473-4c51-aa7c-9c05bd7de1da';
+
   document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('schedule-form') as HTMLFormElement;
+    const form = document.getElementById('schedule-form') as HTMLFormElement | null;
     const successBanner = document.getElementById('form-success');
-    const phoneInput = document.getElementById('phone-num') as HTMLInputElement;
+    const formError = document.getElementById('form-error');
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const fullNameInput = document.getElementById('full-name') as HTMLInputElement | null;
+    const phoneInput = document.getElementById('phone-num') as HTMLInputElement | null;
+    const addressInput = document.getElementById('street-address') as HTMLInputElement | null;
+    const zipInput = document.getElementById('zip-code') as HTMLInputElement | null;
+    const preferredDateInput = document.getElementById('preferred-date') as HTMLInputElement | null;
+    const detergentSelect = document.getElementById('detergent-pref') as HTMLSelectElement | null;
+    const notesTextarea = document.getElementById('special-notes') as HTMLTextAreaElement | null;
     const confirmPhone = document.getElementById('confirm-phone');
 
-    // Set default date to tomorrow
-    const dateInput = document.getElementById('pickup-date') as HTMLInputElement;
-    if (dateInput) {
+    // Set default pickup date to tomorrow and set minimum allowed date to tomorrow
+    if (preferredDateInput) {
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
-      dateInput.value = tomorrow.toISOString().split('T')[0];
+      const minDateStr = tomorrow.toISOString().split('T')[0];
+      preferredDateInput.min = minDateStr;
+      preferredDateInput.value = minDateStr;
+
+      preferredDateInput.addEventListener('click', () => {
+        try {
+          if ('showPicker' in HTMLInputElement.prototype) {
+            preferredDateInput.showPicker();
+          }
+        } catch (_) {}
+      });
     }
 
     if (form && successBanner) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (confirmPhone && phoneInput) {
-          confirmPhone.textContent = phoneInput.value || 'your phone number';
+
+        if (formError) formError.classList.add('hidden');
+
+        const originalBtnText = submitBtn ? submitBtn.textContent : 'JOIN DELIVERY WAITLIST';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'SUBMITTING...';
         }
-        form.classList.add('hidden');
-        successBanner.classList.remove('hidden');
-        successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        const fullName = fullNameInput?.value.trim() || '';
+        const nameParts = fullName.split(/\s+/);
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+        const phone = phoneInput?.value.trim() || '';
+        const address = addressInput?.value.trim() || '';
+        const zip = zipInput?.value.trim() || '';
+        const preferredDate = preferredDateInput?.value || '';
+        const detergent = detergentSelect?.value || 'Tide Original';
+        const notes = notesTextarea?.value.trim() || '';
+
+        const payload = {
+          full_name: fullName,
+          name: fullName,
+          first_name: firstName,
+          last_name: lastName,
+          phone: phone,
+          address1: address,
+          street_address: address,
+          city: 'Toledo',
+          state: 'OH',
+          postal_code: zip,
+          zip_code: zip,
+          preferred_date: preferredDate,
+          detergent: detergent,
+          notes: notes,
+          source: "Laskey's Laundry Pickup & Delivery Waitlist",
+          form_name: 'pickup_and_delivery_waitlist',
+          submitted_at: new Date().toISOString()
+        };
+
+        try {
+          const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+
+          if (!response.ok) {
+            throw new Error(`Server returned ${response.status}`);
+          }
+
+          if (confirmPhone && phone) {
+            confirmPhone.textContent = phone;
+          }
+
+          // Push GTM dataLayer conversion event
+          if (typeof window !== 'undefined') {
+            (window as any).dataLayer = (window as any).dataLayer || [];
+            (window as any).dataLayer.push({
+              event: 'waitlist_submission',
+              form_name: 'pickup_and_delivery_waitlist',
+              zip_code: zip
+            });
+          }
+
+          form.classList.add('hidden');
+          successBanner.classList.remove('hidden');
+          successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          console.error('Waitlist submission error:', err);
+          if (formError) {
+            formError.classList.remove('hidden');
+          } else {
+            alert('There was an issue submitting your request. Please try again or call us at (419) 214-0778.');
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        }
       });
     }
   });
@@ -203,6 +319,47 @@ import ZipChecker from '../components/ZipChecker.astro';
     font-family: inherit;
     background: var(--bg-cream);
     width: 100%;
+    box-sizing: border-box;
+  }
+
+  .date-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .date-input-wrapper input[type="date"] {
+    padding-right: 44px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .date-calendar-icon {
+    position: absolute;
+    right: 14px;
+    pointer-events: none;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+  }
+
+  input[type="date"].form-input {
+    min-height: 48px;
+    color: var(--text-dark);
   }
 
   .form-input:focus {
