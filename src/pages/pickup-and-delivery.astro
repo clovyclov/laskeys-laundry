@@ -56,30 +56,29 @@ import ZipChecker from '../components/ZipChecker.astro';
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group flex-1">
-              <label for="preferred-date">Preferred First Pickup Date</label>
-              <div class="date-input-wrapper">
-                <input type="date" id="preferred-date" name="preferred_date" class="form-input" />
-                <span class="date-calendar-icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                </span>
-              </div>
+          <!-- Preferred First Pickup Date (hidden until pickup & delivery service officially launches) -->
+          <div class="form-group flex-1" id="pickup-date-group" style="display: none;">
+            <label for="preferred-date">Preferred First Pickup Date</label>
+            <div class="date-input-wrapper">
+              <input type="date" id="preferred-date" name="preferred_date" class="form-input" disabled />
+              <span class="date-calendar-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </span>
             </div>
+          </div>
 
-            <div class="form-group flex-1">
-              <label for="detergent-pref">Preferred Detergent</label>
-              <select id="detergent-pref" name="detergent" class="form-input">
-                <option value="Tide Original">Tide Original</option>
-                <option value="Gain Original Scent">Gain Original Scent</option>
-                <option value="Free & Clear Hypoallergenic (Fragrance-Free)">Free & Clear Hypoallergenic (Fragrance-Free)</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label for="detergent-pref">Preferred Detergent</label>
+            <select id="detergent-pref" name="detergent" class="form-input">
+              <option value="Tide Original">Tide Original</option>
+              <option value="Gain Original Scent">Gain Original Scent</option>
+              <option value="Free & Clear Hypoallergenic (Fragrance-Free)">Free & Clear Hypoallergenic (Fragrance-Free)</option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -170,7 +169,7 @@ import ZipChecker from '../components/ZipChecker.astro';
         const phone = phoneInput?.value.trim() || '';
         const address = addressInput?.value.trim() || '';
         const zip = zipInput?.value.trim() || '';
-        const preferredDate = preferredDateInput?.value || '';
+        const preferredDate = (preferredDateInput && !preferredDateInput.disabled) ? preferredDateInput.value : '';
         const detergent = detergentSelect?.value || 'Tide Original';
         const notes = notesTextarea?.value.trim() || '';
 
