@@ -114,6 +114,12 @@ import ZipChecker from '../components/ZipChecker.astro';
 <script>
   const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/HvAYChUFuCk6krO0Qu5L/webhook-trigger/b0b534b9-a473-4c51-aa7c-9c05bd7de1da';
 
+  const VALID_ZIPS = [
+    '43613', '43612', '43623', '43614', '43606',
+    '43615', '43607', '43608', '43609', '43611',
+    '43620', '43604', '43560', '43551'
+  ];
+
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('schedule-form') as HTMLFormElement | null;
     const successBanner = document.getElementById('form-success');
@@ -168,6 +174,10 @@ import ZipChecker from '../components/ZipChecker.astro';
         const detergent = detergentSelect?.value || 'Tide Original';
         const notes = notesTextarea?.value.trim() || '';
 
+        // Check if ZIP code is within Toledo primary delivery launch zone
+        const isInArea = VALID_ZIPS.includes(zip);
+        const areaStatus = isInArea ? 'in_area' : 'out_of_area';
+
         const payload = {
           full_name: fullName,
           name: fullName,
@@ -180,6 +190,9 @@ import ZipChecker from '../components/ZipChecker.astro';
           state: 'OH',
           postal_code: zip,
           zip_code: zip,
+          area_status: areaStatus,
+          is_in_area: isInArea,
+          coverage: isInArea ? 'In Launch Zone' : 'Outside Launch Zone',
           preferred_date: preferredDate,
           detergent: detergent,
           notes: notes,
@@ -211,14 +224,18 @@ import ZipChecker from '../components/ZipChecker.astro';
             (window as any).dataLayer.push({
               event: 'waitlist_submission',
               form_name: 'pickup_and_delivery_waitlist',
-              zip_code: zip
+              zip_code: zip,
+              area_status: areaStatus,
+              is_in_area: isInArea
             });
           }
 
-          // Redirect to Thank You page
+          // Redirect to Thank You page with details
           const redirectUrl = new URL('/thank-you', window.location.origin);
           if (phone) redirectUrl.searchParams.set('phone', phone);
           if (firstName) redirectUrl.searchParams.set('name', firstName);
+          if (zip) redirectUrl.searchParams.set('zip', zip);
+          redirectUrl.searchParams.set('area_status', areaStatus);
           window.location.href = redirectUrl.toString();
         } catch (err) {
           console.error('Waitlist submission error:', err);

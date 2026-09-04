@@ -23,6 +23,8 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </div>
 
+        <div id="area-status-badge" class="pill-badge hidden" style="color: #fff; margin-bottom: 14px; display: inline-block;"></div>
+
         <h2 class="confirm-title font-bebas">SPOT RESERVED FOR PICKUP & DELIVERY</h2>
         <p class="confirm-text">
           <span id="personalized-greeting">We'll text you</span> at <span id="confirm-phone" class="highlight-phone">your phone number</span> as soon as routes open in your neighborhood.
@@ -104,6 +106,10 @@ import Layout from '../layouts/Layout.astro';
 
     const phoneEl = document.getElementById('confirm-phone');
     const greetingEl = document.getElementById('personalized-greeting');
+    const areaBadge = document.getElementById('area-status-badge');
+
+    const areaStatus = urlParams.get('area_status');
+    const zip = urlParams.get('zip');
 
     if (phone && phoneEl) {
       phoneEl.textContent = phone;
@@ -113,12 +119,27 @@ import Layout from '../layouts/Layout.astro';
       greetingEl.textContent = `Thanks ${name}! We'll text you`;
     }
 
+    if (areaBadge && areaStatus) {
+      if (areaStatus === 'in_area') {
+        areaBadge.textContent = zip ? `ZIP ${zip}: In Primary Launch Zone` : 'In Primary Launch Zone';
+        areaBadge.style.background = '#15803d';
+        areaBadge.style.border = '2px solid #166534';
+      } else {
+        areaBadge.textContent = zip ? `ZIP ${zip}: Expansion Route Waitlist` : 'Expansion Route Waitlist';
+        areaBadge.style.background = '#b45309';
+        areaBadge.style.border = '2px solid #92400e';
+      }
+      areaBadge.classList.remove('hidden');
+    }
+
     // Push GTM thank you event
     if (typeof window !== 'undefined') {
       (window as any).dataLayer = (window as any).dataLayer || [];
       (window as any).dataLayer.push({
         event: 'thank_you_page_view',
-        page: 'delivery_waitlist_thank_you'
+        page: 'delivery_waitlist_thank_you',
+        area_status: areaStatus || 'unknown',
+        zip_code: zip || ''
       });
     }
   });
