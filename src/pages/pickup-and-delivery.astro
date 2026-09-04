@@ -215,9 +215,11 @@ import ZipChecker from '../components/ZipChecker.astro';
             });
           }
 
-          form.classList.add('hidden');
-          successBanner.classList.remove('hidden');
-          successBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Redirect to Thank You page
+          const redirectUrl = new URL('/thank-you', window.location.origin);
+          if (phone) redirectUrl.searchParams.set('phone', phone);
+          if (firstName) redirectUrl.searchParams.set('name', firstName);
+          window.location.href = redirectUrl.toString();
         } catch (err) {
           console.error('Waitlist submission error:', err);
           if (formError) {
