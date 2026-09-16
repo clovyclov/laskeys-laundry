@@ -1,0 +1,455 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PhotoGallery from '../components/PhotoGallery.astro';
+
+const faqs = [
+  {
+    q: 'How do you remove persistent sweat odor from athletic gear?',
+    a: 'Synthetic sportswear traps body oils and bacteria inside polyester and spandex fibers. We use deep-cleaning detergents that dissolve body oils and neutralize trapped odors rather than simply masking them with heavy perfumes.',
+  },
+  {
+    q: 'Are high-temperature dryers used on synthetic jerseys?',
+    a: 'No. Extreme heat breaks down elastane, spandex, and vinyl player numbers. We dry athletic uniforms on low-heat cycles or cool airflow to preserve flexibility and printing.',
+  },
+  {
+    q: 'Can local sports teams or school leagues drop off bulk jerseys?',
+    a: 'Yes. We accommodate Toledo youth leagues, club teams, and martial arts academies with bulk uniform washing and fast turnaround between matches.',
+  },
+  {
+    q: 'What is your pricing for athletic wash & fold?',
+    a: 'Standard next-day service is $1.50 per pound (10 lb minimum). Same-day express is $2.00 per pound. Drop-off payment is Cash Only (an on-site ATM is available).',
+  },
+  {
+    q: 'What are your drop-off hours?',
+    a: 'Our attendant counter is open 7:00 AM to 7:00 PM daily at 3330 W Laskey Rd in Toledo.',
+  },
+];
+---
+
+<Layout
+  title="Athletic & Sports Gear Laundry Service - Laskey's Laundry Toledo"
+  description="Odor-eliminating wash and fold for sports uniforms, gym gear, and synthetic activewear in Toledo, OH. Safe on spandex, low-heat drying, and $1.50/lb pricing."
+  activeTab="services"
+>
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <span class="pill-badge">SPORTSWEAR & ACTIVEWEAR</span>
+      <h1 class="header-title">ATHLETIC & SPORTS GEAR LAUNDRY</h1>
+      <p class="header-desc">
+        Deep cleaning and odor-neutralizing wash and fold designed specifically for gym apparel, team jerseys, athletic uniforms, and moisture-wicking synthetic fabrics.
+      </p>
+      <div class="header-payment-tag">
+        DROP-OFF 7:00 AM – 7:00 PM DAILY · CASH ONLY (ATM ON SITE) · TOLEDO, OH
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Section 1: Odor Elimination -->
+  <section class="split-section">
+    <div class="container">
+      <div class="split-row">
+        <!-- Text Left -->
+        <div class="split-text-col">
+          <span class="section-tag">ODOR & BACTERIA REMOVAL</span>
+          <h2 class="split-heading">TARGETING EMBEDDED SWEAT & TURF GRIME</h2>
+          <p class="split-paragraph">
+            Standard residential washes often fail to clear persistent gym odors because synthetic microfibers hold onto sebum and sweat bacteria. Repeated low-grade washing creates a permanent sour smell when the garment warms up during workouts.
+          </p>
+          <p class="split-paragraph">
+            Our attendants wash sportswear with targeted surfactant detergents that lift trapped body oils and sweat salts from deep inside technical fabrics without degrading compression elasticity.
+          </p>
+          <ul class="split-checklist">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Youth League & Adult Team Uniforms</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Compression Wear, Spandex & Yoga Apparel</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Gym Towels, Sweatbands & Padded Undergarments</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Image Right (Polaroid Frame) -->
+        <div class="split-image-col">
+          <div class="polaroid-frame" style="transform: rotate(1.5deg);">
+            <div class="polaroid-tape"></div>
+            <div class="img-wrapper">
+              <img src="/images/IMG_7081.webp" alt="High-speed express dryers at Laskey's Laundry Toledo" loading="lazy" />
+            </div>
+            <div class="polaroid-caption font-bebas">LOW-HEAT CONTROLLED DRYING</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Split Section 2: Fabric Protection & Rates -->
+  <section class="split-section bg-alt">
+    <div class="container">
+      <div class="split-row reverse">
+        <!-- Text Right -->
+        <div class="split-text-col">
+          <span class="section-tag">FABRIC INTEGRITY</span>
+          <h2 class="split-heading">SAFE ON VINYL NUMBERS & TECHNICAL WEAVES</h2>
+          <p class="split-paragraph">
+            We preserve team jerseys by drying on gentle low heat to prevent vinyl decals, embroidered patches, and elastane threads from cracking or shrinking.
+          </p>
+          <div class="price-cards-row">
+            <div class="price-box card-retro">
+              <div class="price-val font-bebas">$1.50 / lb</div>
+              <div class="price-title">Next-Day Service</div>
+              <div class="price-note">10 lb minimum · Ready in 24 hrs</div>
+            </div>
+            <div class="price-box card-retro">
+              <div class="price-val font-bebas">$2.00 / lb</div>
+              <div class="price-title">Same-Day Express</div>
+              <div class="price-note">Drop off by 10am · Ready by 4pm</div>
+            </div>
+          </div>
+          <div class="split-btn-wrap">
+            <a
+              href="https://maps.google.com/?q=3330+W+Laskey+Rd+Toledo+OH+43623"
+              target="_blank"
+              rel="noopener noreferrer"
+              id="athletic-get-directions"
+              class="btn-retro-red btn-get-directions"
+              data-gtm-category="directions"
+              data-gtm-action="click"
+              data-gtm-label="athletic_page_directions"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              GET DIRECTIONS TO DROP OFF
+            </a>
+          </div>
+        </div>
+
+        <!-- Image Left (Polaroid Frame) -->
+        <div class="split-image-col">
+          <div class="polaroid-frame" style="transform: rotate(-1.5deg);">
+            <div class="polaroid-tape"></div>
+            <div class="img-wrapper">
+              <img src="/images/IMG_7080.webp" alt="Clean folding and counter area at Laskey's Laundry" loading="lazy" />
+            </div>
+            <div class="polaroid-caption font-bebas">FOLDED & WRAPPED FOR GYM BAGS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <PhotoGallery />
+
+  <!-- FAQs Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title text-center">
+        <span class="pill-badge">HAVE QUESTIONS?</span>
+        <h2>SPORTSWEAR LAUNDRY FAQS</h2>
+        <p class="sub-text">Answers about athletic uniform care and odor treatment.</p>
+      </div>
+
+      <div class="faq-grid">
+        {faqs.map((faq) => (
+          <div class="faq-card card-retro">
+            <h3 class="faq-question font-bebas">{faq.q}</h3>
+            <p class="faq-answer">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Banner -->
+  <section class="bottom-cta-section">
+    <div class="container text-center">
+      <div class="cta-box card-retro">
+        <h2 class="cta-heading font-bebas">DROP OFF YOUR GEAR TODAY</h2>
+        <p class="cta-text">
+          Located at 3330 W Laskey Rd, right on Laskey and Secor in Toledo, OH. Drop off daily from 7:00 AM to 7:00 PM. Cash only (ATM on site).
+        </p>
+        <div class="cta-btn-row">
+          <a
+            href="https://maps.google.com/?q=3330+W+Laskey+Rd+Toledo+OH+43623"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-retro-red btn-get-directions"
+            data-gtm-category="directions"
+            data-gtm-action="click"
+            data-gtm-label="athletic_footer_directions"
+          >
+            GET DIRECTIONS
+          </a>
+          <a href="tel:4192140778" class="btn-retro-secondary">
+            CALL US: (419) 214-0778
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: var(--bg-cream-dark);
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 3px solid var(--border-dark);
+  }
+
+  .header-title {
+    font-size: 3.5rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .header-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 750px;
+    margin: 0 auto 20px;
+  }
+
+  .header-payment-tag {
+    display: inline-block;
+    background: rgba(220, 38, 38, 0.1);
+    color: var(--brand-red);
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 6px 16px;
+    border: 2px solid var(--brand-red);
+  }
+
+  /* Split Sections */
+  .split-section {
+    padding: 70px 0;
+  }
+
+  .split-section.bg-alt {
+    background: var(--bg-cream-dark);
+    border-top: 3px solid var(--border-dark);
+    border-bottom: 3px solid var(--border-dark);
+  }
+
+  .split-row {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .split-row.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .split-text-col {
+    flex: 1.2;
+  }
+
+  .split-image-col {
+    flex: 0.9;
+  }
+
+  .section-tag {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--brand-blue);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .split-heading {
+    font-size: 2.6rem;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .split-paragraph {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .split-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .split-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  /* Price Cards Row */
+  .price-cards-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .price-box {
+    background: #ffffff;
+    padding: 18px;
+    text-align: center;
+  }
+
+  .price-val {
+    font-size: 2.2rem;
+    color: var(--brand-red);
+    line-height: 1.1;
+  }
+
+  .price-title {
+    font-weight: 800;
+    font-size: 1rem;
+    margin-top: 4px;
+  }
+
+  .price-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .split-btn-wrap {
+    margin-top: 24px;
+  }
+
+  /* Polaroid Image Wrapper */
+  .img-wrapper {
+    height: 320px;
+    overflow: hidden;
+    background: #e5e5e5;
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .polaroid-caption {
+    text-align: center;
+    margin-top: 14px;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    color: var(--text-dark);
+  }
+
+  /* FAQs Section */
+  .faq-section {
+    padding: 60px 0;
+    background: #ffffff;
+  }
+
+  .section-title h2 {
+    font-size: 3rem;
+    margin-top: 10px;
+    margin-bottom: 8px;
+  }
+
+  .sub-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .faq-card {
+    background: var(--bg-cream-dark);
+    padding: 28px;
+  }
+
+  .faq-question {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+  }
+
+  .faq-answer {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Bottom CTA */
+  .bottom-cta-section {
+    padding: 60px 0;
+    background: var(--bg-cream-dark);
+  }
+
+  .cta-box {
+    background: #ffffff;
+    padding: 48px;
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .cta-heading {
+    font-size: 3rem;
+    margin-bottom: 12px;
+  }
+
+  .cta-text {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 30px;
+  }
+
+  .cta-btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 860px) {
+    .split-row,
+    .split-row.reverse {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .price-cards-row,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .header-title {
+      font-size: 2.8rem;
+    }
+
+    .split-heading {
+      font-size: 2.2rem;
+    }
+
+    .cta-box {
+      padding: 28px 20px;
+    }
+  }
+</style>
