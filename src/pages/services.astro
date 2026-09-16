@@ -2,154 +2,142 @@
 import Layout from '../layouts/Layout.astro';
 import PhotoGallery from '../components/PhotoGallery.astro';
 
-const servicesList = [
+// Service Cards Array - Easily expandable for new SEO pages!
+const serviceCards = [
   {
     id: 'wash-and-fold',
-    badge: 'ATTENDANT SERVICE · CASH ONLY',
-    title: 'DROP-OFF WASH & FOLD LAUNDRY',
-    tagline: 'Save hours every week with professional attendant washing, drying, and folding.',
-    description: 'Bring your everyday laundry to our counter between 7:00 AM and 7:00 PM daily. We sort whites and darks, wash with premium detergents (Tide, Gain, or Free & Clear), dry to perfection, and fold everything into sealed plastic wrap ready for your dresser.',
-    rates: [
-      { name: 'Next-Day Wash & Fold', price: '$1.50 / lb', note: '10 lb minimum · Ready in 24 hrs' },
-      { name: 'Same-Day Express', price: '$2.00 / lb', note: 'Drop off by 10am · Ready by 4pm' },
-      { name: 'Bedding & Comforters', price: '$2.00 / lb', note: 'King, Queen, Quilts & Rugs' },
+    icon: 'basket',
+    iconColor: '#e07a5f',
+    title: 'Drop-Off Wash & Fold',
+    desc: 'Our premier attendant service. Drop off your everyday clothes, towels, and household linens for professional sorting, washing, drying, and crisp folding.',
+    bullets: [
+      'Next-Day Service ($1.50 / lb)',
+      'Same-Day Express ($2.00 / lb)',
+      'Tide, Gain, or Hypoallergenic Free & Clear',
+      'Drop-Off Daily 7:00 AM – 7:00 PM (Cash Only)',
     ],
-    features: [
-      'Separated whites, colors, and darks',
-      'Choice of Tide, Gain, or Hypoallergenic Free & Clear',
-      'Fabric softener or fragrance-free options',
-      'Attendants inspect and follow care labels',
-      'Text notification when order is ready',
-      'Cash Only payment (on-site ATM available)',
-    ],
-    linkHref: '/wash-and-fold',
-    linkText: 'VIEW FULL WASH & FOLD DETAILS & PRICING',
+    btnText: 'EXPLORE WASH & FOLD',
+    btnHref: '/wash-and-fold',
+    isDark: false,
   },
   {
-    id: 'specialty-care',
-    badge: 'SPECIALTY WASHING & LINENS',
-    title: 'COMFORTERS, SUITS & SPECIALTY GARMENTS',
-    tagline: 'Custom wash and fold care for bulky bedding, washable suits, and delicate items.',
-    description: 'Not all laundry is just t-shirts and jeans. We provide specialized wash cycles and customized care for heavy household bedding, delicate items, athletic gear, and work uniforms.',
-    items: [
-      {
-        title: 'King & Queen Comforters',
-        desc: 'Bulky down comforters, duvets, handmade quilts, and weighted blankets washed in high-capacity drums and gently dried so fills remain fluffy without clumping.',
-      },
-      {
-        title: 'Washable Suits & Blazers',
-        desc: 'Careful cold-water wash and low-tumble or air-dry finishing for washable blazers, suit pants, dress shirts, and uniform jackets.',
-      },
-      {
-        title: 'Delicate Garments & Blouses',
-        desc: 'Gentle cycle washing with hypoallergenic soap, low-spin protection, and gentle handling for sweaters, lace, and synthetics.',
-      },
-      {
-        title: 'Sports & Odor-Eliminating Activewear',
-        desc: 'High-performance sportswear washing designed to break down sweat oils, bacteria, and turf grime from gym clothes and sports gear.',
-      },
+    id: 'comforter-bedding',
+    icon: 'bedding',
+    iconColor: '#3b82f6',
+    title: 'Comforters & Heavy Bedding',
+    desc: 'Specialized deep-cleaning and gentle low-heat drying for king-size down comforters, duvets, quilts, and heavy weighted blankets.',
+    bullets: [
+      'King, Queen & Full Comforters',
+      'Low-Heat Drying Protects Down & Fills',
+      'Flat Per-Pound Rate ($2.00 / lb)',
+      'Deep Sanitization & Dust Mite Removal',
     ],
-    linkHref: '/wash-and-fold#pricing',
-    linkText: 'SEE SPECIALTY DROP-OFF RATES',
+    btnText: 'VIEW BEDDING DETAILS',
+    btnHref: '/wash-and-fold#pricing',
+    isDark: false,
+  },
+  {
+    id: 'suits-delicates',
+    icon: 'suit',
+    iconColor: '#8b5cf6',
+    title: 'Suits & Delicate Garments',
+    desc: 'Customized gentle cycles and delicate handling for washable suits, blazers, dress shirts, delicate blouses, and sensitive fabrics.',
+    bullets: [
+      'Cold-Water Gentle Wash Cycles',
+      'Low-Spin Fabric & Seam Protection',
+      'Air-Dry / Low-Tumble Options',
+      'Attendants Carefully Inspect Care Labels',
+    ],
+    btnText: 'SEE DELICATE CARE',
+    btnHref: '/wash-and-fold',
+    isDark: false,
   },
   {
     id: 'self-service',
-    badge: 'OPEN 7 DAYS: 7AM – 9PM',
-    title: 'SELF-SERVICE COIN & CARD LAUNDROMAT',
-    tagline: 'Toledo’s cleanest, brightest laundromat with 20lb to 80lb high-efficiency machines.',
-    description: 'Prefer to do your own wash? Our spotless facility features modern stainless steel Huebsch equipment that accepts credit cards, quarters, or coin payments directly on the machines. High-spin extraction cuts dry times down to just 15–20 minutes so you can finish all your loads in under 45 minutes.',
-    rates: [
-      { name: 'Small & Double Loads', price: '20lb – 30lb Washers', note: 'Fast 25-min wash cycle' },
-      { name: 'Family & Triple Loads', price: '40lb Washers', note: 'Fits 3–4 standard baskets' },
-      { name: 'Mega Comforter Washers', price: '60lb – 80lb Washers', note: 'Fits giant King comforters' },
+    icon: 'washer',
+    iconColor: '#10b981',
+    title: 'Self-Service Coin & Card',
+    desc: 'Toledo’s cleanest, brightest laundromat with commercial stainless steel Huebsch washers and high-heat express dryers.',
+    bullets: [
+      '20lb to 80lb Mega Comforter Washers',
+      'Credit Cards & Quarters on Machines',
+      'Dual Bill Changers & On-Site ATM',
+      'Express 20-Min Dryers Cut Wait Times',
     ],
-    features: [
-      'Accepts Credit Cards & Quarters directly on machines',
-      'Dual bill-to-quarter change machines on site',
-      'On-site cash ATM for immediate convenience',
-      'High-heat express dryers with anti-wrinkle cool-down',
-      'Free high-speed customer Wi-Fi & comfortable seating',
-      'Full vending for Tide, Gain, Bounce, snacks & cold drinks',
+    btnText: 'VIEW MACHINES & AMENITIES',
+    btnHref: '/self-service',
+    isDark: false,
+  },
+  {
+    id: 'commercial-airbnb',
+    icon: 'building',
+    iconColor: '#f59e0b',
+    title: 'Commercial & Airbnb Linens',
+    desc: 'Dependable towel and linen laundry service tailored for Toledo short-term rental hosts (Airbnb/VRBO), hair salons, spas, and gyms.',
+    bullets: [
+      'Fast Turnover Scheduling for Rentals',
+      'Sanitized Sheets, Duvets & Bath Linens',
+      'Flexible Drop-Off Schedules',
+      'Detailed Invoices & Receipts for Taxes',
     ],
-    linkHref: '/self-service',
-    linkText: 'VIEW WASHER SIZES & AMENITIES',
+    btnText: 'COMMERCIAL SERVICES',
+    btnHref: '/location',
+    isDark: false,
   },
   {
-    id: 'commercial',
-    badge: 'SMALL BUSINESS & AIRBNB ACCOUNTS',
-    title: 'COMMERCIAL LAUNDRY & LINEN SERVICE',
-    tagline: 'Reliable laundry service for Toledo businesses, Airbnb hosts, and medical clinics.',
-    description: 'Keep your business running smoothly with crisp, sanitized, professionally folded linens. We serve local Toledo short-term rentals, hair salons, barbershops, fitness centers, chiropractic clinics, and caterers with flexible drop-off or scheduled turnarounds.',
-    items: [
-      {
-        title: 'Airbnb & Vacation Rentals',
-        desc: 'Bed sheets, duvet covers, pillowcases, bath sheets, hand towels, and kitchen dishcloths washed, sanitized, and neatly packaged for fast turnovers.',
-      },
-      {
-        title: 'Salons, Spas & Barbershops',
-        desc: 'Towel washing and stain removal for hair salon capes, facial towels, massage linens, and bleach-safe styling towels.',
-      },
-      {
-        title: 'Fitness Centers & Gyms',
-        desc: 'High-volume workout towels, sweat rags, and microfibers washed with odor-neutralizing commercial detergents.',
-      },
-      {
-        title: 'Medical & Dental Practices',
-        desc: 'Sanitized scrubs, patient gowns, lab coats, and barrier towels returned spotless and hygienic.',
-      },
+    id: 'sports-activewear',
+    icon: 'fitness',
+    iconColor: '#ec4899',
+    title: 'Athletic & Sports Gear',
+    desc: 'Odor-eliminating laundry care designed to break down sweat oils, turf grime, and bacteria from synthetic workout clothes and sports uniforms.',
+    bullets: [
+      'Odor-Neutralizing Deep Wash',
+      'Safe on Spandex, Lycra & Synthetics',
+      'Sports Uniforms & Team Jerseys',
+      'Crisply Folded & Sealed in Wrap',
     ],
-    linkHref: '/location',
-    linkText: 'CONTACT US FOR COMMERCIAL ACCOUNTS',
+    btnText: 'EXPLORE ATHLETIC CARE',
+    btnHref: '/wash-and-fold',
+    isDark: false,
   },
   {
-    id: 'delivery',
-    badge: 'COMING SOON ACROSS TOLEDO',
-    title: 'DOOR-TO-DOOR PICKUP & DELIVERY',
-    tagline: 'Effortless laundry pickup from your porch with delivery right back to your door.',
-    description: 'We are launching door-to-door laundry delivery in Greater Toledo! Simply bag your dirty laundry, schedule a pickup, and receive freshly laundered, folded clothes in 24–48 hours without leaving your home.',
-    features: [
-      'Contactless porch pickup & drop-off',
-      'Serving Toledo, Sylvania, Maumee, and Perrysburg launch routes',
-      'FREE delivery on household orders over 30 lbs',
-      'Customizable detergent, softener, and folding preferences',
-      'Early access waitlist now open for launch discounts',
+    id: 'pickup-delivery',
+    icon: 'delivery',
+    iconColor: '#06b6d4',
+    title: 'Toledo Pickup & Delivery',
+    desc: 'Door-to-door laundry service launching soon! We pick up dirty bags from your porch and deliver clean, fresh folded laundry back to your door.',
+    bullets: [
+      'Contactless Porch Pickup & Delivery',
+      'FREE Delivery on Orders Over 30 lbs',
+      'Serving Greater Toledo Launch Routes',
+      'Early Access Waitlist Open Now',
     ],
-    linkHref: '/pickup-and-delivery',
-    linkText: 'CHECK YOUR ZIP CODE & JOIN WAITLIST',
-  },
-];
-
-const faqs = [
-  {
-    q: 'Can I wash giant king-size comforters and heavy quilts at Laskey’s Laundry?',
-    a: 'Yes! You can either drop them off for our attendant wash & fold ($2.00/lb) or use our giant 60lb and 80lb self-service commercial washers. These machines are engineered with massive wash drums to give heavy bedding room to tumble and sanitize thoroughly.',
+    btnText: 'CHECK ZIP & JOIN WAITLIST',
+    btnHref: '/pickup-and-delivery',
+    isDark: false,
   },
   {
-    q: 'Can I drop off washable suits, blazers, and dress shirts for wash & fold?',
-    a: 'Yes. For washable workwear, dress shirts, blouses, and washable blazers, our attendants follow delicate care instructions including cold-water wash, gentle cycles, and low-heat tumbling to preserve fabrics and color vibrancy.',
-  },
-  {
-    q: 'What payment methods do you accept?',
-    a: 'For self-service laundromat machines, we accept both credit cards and quarters. For drop-off wash & fold services, payment is Cash Only. We have an on-site ATM and dual bill-to-quarter changers inside the store.',
-  },
-  {
-    q: 'What are your drop-off and store hours?',
-    a: 'Our self-service laundromat is open 7:00 AM – 9:00 PM daily (last wash at 8:00 PM). Drop-off wash & fold counter service is open 7:00 AM – 7:00 PM daily, 365 days a year.',
-  },
-  {
-    q: 'Do you provide laundry services for local Toledo businesses and Airbnb hosts?',
-    a: 'Yes! We support local Toledo short-term rental hosts, salons, spas, fitness studios, and healthcare practices with fast, dependable linen and towel laundry service.',
-  },
-  {
-    q: 'When is pickup and delivery launching in Toledo?',
-    a: 'Delivery is currently in final testing and launching soon! You can check your ZIP code on our Pickup & Delivery page and join the early access waitlist to receive launch notifications and special promotions.',
+    id: 'custom-schedule',
+    icon: 'phone',
+    iconColor: '#f97316',
+    title: 'Need A Custom Laundry Plan?',
+    desc: 'Have recurring high-volume laundry, specialized fabric questions, or unique commercial requirements? Our Toledo team is here to help.',
+    bullets: [
+      'Custom Turnaround Schedules',
+      'On-Site Attendants 7 Days a Week',
+      'Direct Phone Support & Advice',
+      'Convenient Drop-Off at Laskey & Secor',
+    ],
+    btnText: 'GIVE US A CALL (419) 214-0778',
+    btnHref: 'tel:4192140778',
+    isDark: true,
   },
 ];
 ---
 
 <Layout
-  title="All Laundry Services - Laskey's Laundry Toledo OH"
-  description="Comprehensive laundry services in Toledo, OH. Drop-off wash & fold ($1.50-$2.00/lb), comforters & suits, self-service coin/card machines (up to 80lb), commercial linens, and upcoming delivery."
+  title="All Laundry Services & Solutions - Laskey's Laundry Toledo OH"
+  description="Explore all laundry services at Laskey's Laundry in Toledo, OH. Drop-off wash & fold ($1.50-$2.00/lb), king comforters, washable suits, 20-80lb self-service machines, commercial linens, and upcoming delivery."
   activeTab="services"
 >
   <!-- Page Header -->
@@ -158,187 +146,73 @@ const faqs = [
       <span class="pill-badge">TOLEDO LAUNDRY SOLUTIONS</span>
       <h1 class="header-title">OUR LAUNDRY SERVICES</h1>
       <p class="header-desc">
-        From full-service attendant wash & fold and king-size comforter care to modern self-service coin & card machines, Laskey's Laundry has the right solution for your clothes and household linens.
+        Explore our complete range of full-service drop-off wash & fold, specialty garment care, commercial linen services, and self-service laundromat amenities.
       </p>
-
-      <!-- Quick Nav Jump Anchor Bar -->
-      <div class="services-nav-bar">
-        <a href="#wash-and-fold" class="service-nav-pill">Wash & Fold</a>
-        <a href="#specialty-care" class="service-nav-pill">Comforters & Suits</a>
-        <a href="#self-service" class="service-nav-pill">Self-Service Laundromat</a>
-        <a href="#commercial" class="service-nav-pill">Commercial & Airbnb</a>
-        <a href="#delivery" class="service-nav-pill">Pickup & Delivery</a>
-      </div>
     </div>
   </section>
 
-  <!-- Main Services Container -->
-  <section class="services-list-section">
+  <!-- Modular Services Card Grid -->
+  <section class="services-grid-section">
     <div class="container">
-      <!-- Service 1: Wash & Fold -->
-      <div id="wash-and-fold" class="service-block card-retro">
-        <div class="service-block-header">
-          <span class="service-category-badge">{servicesList[0].badge}</span>
-          <h2 class="service-block-title">{servicesList[0].title}</h2>
-          <p class="service-block-tagline">{servicesList[0].tagline}</p>
-        </div>
-
-        <p class="service-block-desc">{servicesList[0].description}</p>
-
-        <!-- Rates Table -->
-        <div class="rates-grid">
-          {servicesList[0].rates?.map((rate) => (
-            <div class="rate-card">
-              <span class="rate-name">{rate.name}</span>
-              <span class="rate-price font-bebas">{rate.price}</span>
-              <span class="rate-note">{rate.note}</span>
+      <div class="services-cards-grid">
+        {serviceCards.map((card) => (
+          <div class={`service-box-card ${card.isDark ? 'card-dark-theme' : 'card-retro'}`}>
+            <!-- Top Icon Box -->
+            <div class="card-icon-wrap" style={`background: ${card.iconColor};`}>
+              {card.icon === 'basket' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              )}
+              {card.icon === 'bedding' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>
+              )}
+              {card.icon === 'suit' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+              )}
+              {card.icon === 'washer' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="13" r="2"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="12" y1="6" x2="12.01" y2="6"/></svg>
+              )}
+              {card.icon === 'building' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="16" y1="18" x2="16.01" y2="18"/></svg>
+              )}
+              {card.icon === 'fitness' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v6"/><path d="M9 15l3 3 3-3"/></svg>
+              )}
+              {card.icon === 'delivery' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              )}
+              {card.icon === 'phone' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              )}
             </div>
-          ))}
-        </div>
 
-        <!-- Features Grid -->
-        <div class="service-features-wrap">
-          <h3 class="features-heading font-bebas">WHAT’S INCLUDED WITH DROP-OFF:</h3>
-          <ul class="features-columns">
-            {servicesList[0].features?.map((f) => (
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+            <!-- Card Heading -->
+            <h2 class="card-service-title">{card.title}</h2>
 
-        <div class="service-actions">
-          <a href={servicesList[0].linkHref} class="btn-retro-red service-cta-btn">
-            {servicesList[0].linkText} &rarr;
-          </a>
-        </div>
-      </div>
+            <!-- Card Description -->
+            <p class="card-service-desc">{card.desc}</p>
 
-      <!-- Service 2: Specialty Items (Comforters, Suits, Delicates) -->
-      <div id="specialty-care" class="service-block card-retro">
-        <div class="service-block-header">
-          <span class="service-category-badge">{servicesList[1].badge}</span>
-          <h2 class="service-block-title">{servicesList[1].title}</h2>
-          <p class="service-block-tagline">{servicesList[1].tagline}</p>
-        </div>
+            <!-- Card Checklist Bullets -->
+            <ul class="card-checklist">
+              {card.bullets.map((bullet) => (
+                <li>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>{bullet}</span>
+                </li>
+              ))}
+            </ul>
 
-        <p class="service-block-desc">{servicesList[1].description}</p>
-
-        <!-- Specialty Cards Grid -->
-        <div class="specialty-grid">
-          {servicesList[1].items?.map((item) => (
-            <div class="specialty-card">
-              <h3 class="specialty-title font-bebas">{item.title}</h3>
-              <p class="specialty-text">{item.desc}</p>
+            <!-- Bottom Button -->
+            <div class="card-btn-wrap">
+              <a
+                href={card.btnHref}
+                class={`card-action-btn ${card.isDark ? 'btn-dark-cta' : 'btn-light-cta'}`}
+              >
+                <span>{card.btnText}</span>
+                <span class="btn-arrow">&rarr;</span>
+              </a>
             </div>
-          ))}
-        </div>
-
-        <div class="service-actions">
-          <a href={servicesList[1].linkHref} class="btn-retro-red service-cta-btn">
-            {servicesList[1].linkText} &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 3: Self-Service Laundromat -->
-      <div id="self-service" class="service-block card-retro">
-        <div class="service-block-header">
-          <span class="service-category-badge">{servicesList[2].badge}</span>
-          <h2 class="service-block-title">{servicesList[2].title}</h2>
-          <p class="service-block-tagline">{servicesList[2].tagline}</p>
-        </div>
-
-        <p class="service-block-desc">{servicesList[2].description}</p>
-
-        <!-- Machine Sizes Grid -->
-        <div class="rates-grid">
-          {servicesList[2].rates?.map((rate) => (
-            <div class="rate-card">
-              <span class="rate-name">{rate.name}</span>
-              <span class="rate-price font-bebas">{rate.price}</span>
-              <span class="rate-note">{rate.note}</span>
-            </div>
-          ))}
-        </div>
-
-        <!-- Amenities Features -->
-        <div class="service-features-wrap">
-          <h3 class="features-heading font-bebas">STORE AMENITIES & FEATURES:</h3>
-          <ul class="features-columns">
-            {servicesList[2].features?.map((f) => (
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="service-actions">
-          <a href={servicesList[2].linkHref} class="btn-retro-red service-cta-btn">
-            {servicesList[2].linkText} &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 4: Commercial & Airbnb Laundry -->
-      <div id="commercial" class="service-block card-retro">
-        <div class="service-block-header">
-          <span class="service-category-badge">{servicesList[3].badge}</span>
-          <h2 class="service-block-title">{servicesList[3].title}</h2>
-          <p class="service-block-tagline">{servicesList[3].tagline}</p>
-        </div>
-
-        <p class="service-block-desc">{servicesList[3].description}</p>
-
-        <!-- Commercial Niches -->
-        <div class="specialty-grid">
-          {servicesList[3].items?.map((item) => (
-            <div class="specialty-card">
-              <h3 class="specialty-title font-bebas">{item.title}</h3>
-              <p class="specialty-text">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div class="service-actions">
-          <a href={servicesList[3].linkHref} class="btn-retro-secondary service-cta-btn">
-            {servicesList[3].linkText} &rarr;
-          </a>
-        </div>
-      </div>
-
-      <!-- Service 5: Pickup & Delivery -->
-      <div id="delivery" class="service-block card-retro">
-        <div class="service-block-header">
-          <span class="service-category-badge" style="background: #374151; border-color: #1f2937;">{servicesList[4].badge}</span>
-          <h2 class="service-block-title">{servicesList[4].title}</h2>
-          <p class="service-block-tagline">{servicesList[4].tagline}</p>
-        </div>
-
-        <p class="service-block-desc">{servicesList[4].description}</p>
-
-        <!-- Delivery Highlights -->
-        <div class="service-features-wrap">
-          <h3 class="features-heading font-bebas">DELIVERY HIGHLIGHTS:</h3>
-          <ul class="features-columns">
-            {servicesList[4].features?.map((f) => (
-              <li>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div class="service-actions">
-          <a href={servicesList[4].linkHref} class="btn-retro-red service-cta-btn">
-            {servicesList[4].linkText} &rarr;
-          </a>
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -346,33 +220,13 @@ const faqs = [
   <!-- Photo Gallery -->
   <PhotoGallery />
 
-  <!-- Services FAQ Accordion / Grid -->
-  <section class="faq-section">
-    <div class="container">
-      <div class="section-title text-center">
-        <span class="pill-badge">HAVE QUESTIONS?</span>
-        <h2>FREQUENTLY ASKED QUESTIONS</h2>
-        <p class="sub-text">Everything you need to know about our Toledo laundry services, pricing, and machine options.</p>
-      </div>
-
-      <div class="faq-grid">
-        {faqs.map((faq) => (
-          <div class="faq-card card-retro">
-            <h3 class="faq-question font-bebas">{faq.q}</h3>
-            <p class="faq-answer">{faq.a}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Bottom Location CTA Banner -->
+  <!-- Bottom CTA Banner -->
   <section class="bottom-cta-section">
     <div class="container text-center">
       <div class="cta-box card-retro">
         <h2 class="cta-heading font-bebas">VISIT LASKEY'S LAUNDRY TODAY</h2>
         <p class="cta-text">
-          Located right on Laskey and Secor in Toledo, OH. Drop off your laundry or wash with ease 7 days a week!
+          Conveniently located at 3330 W Laskey Rd, right on Laskey and Secor in Toledo, OH. Drop off your laundry or wash with ease 7 days a week!
         </p>
         <div class="cta-btn-row">
           <a
@@ -419,232 +273,160 @@ const faqs = [
     margin: 0 auto;
   }
 
-  /* Quick Nav Pills */
-  .services-nav-bar {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 28px;
-  }
-
-  .service-nav-pill {
-    background: #ffffff;
-    border: 2px solid var(--border-dark);
-    padding: 8px 18px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--text-dark);
-    text-decoration: none;
-    box-shadow: 2px 2px 0 #000;
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-
-  .service-nav-pill:hover {
-    background: var(--brand-blue);
-    color: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 4px 4px 0 #000;
-  }
-
-  /* Services List Section */
-  .services-list-section {
+  /* Services Grid Section */
+  .services-grid-section {
     padding: 60px 0;
   }
 
-  .service-block {
-    padding: 40px;
-    margin-bottom: 48px;
-    background: #ffffff;
-  }
-
-  .service-block-header {
-    margin-bottom: 16px;
-  }
-
-  .service-category-badge {
-    display: inline-block;
-    background: var(--brand-red);
-    color: #ffffff;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    border: 2px solid var(--border-dark);
-    margin-bottom: 10px;
-  }
-
-  .service-block-title {
-    font-size: 2.8rem;
-    margin-bottom: 6px;
-  }
-
-  .service-block-tagline {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--brand-blue);
-  }
-
-  .service-block-desc {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 24px;
-    max-width: 900px;
-  }
-
-  /* Rates Grid */
-  .rates-grid {
+  .services-cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 28px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
   }
 
-  .rate-card {
-    background: var(--bg-cream-dark);
-    border: 2px solid var(--border-dark);
-    padding: 16px;
-    text-align: center;
+  .service-box-card {
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    border-radius: 12px;
+    position: relative;
+    background: #ffffff;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .rate-name {
-    font-weight: 700;
-    font-size: 0.95rem;
+  .service-box-card:hover {
+    transform: translateY(-4px);
   }
 
-  .rate-price {
-    font-size: 2rem;
-    color: var(--brand-red);
-    line-height: 1.1;
+  /* Dark Theme Card */
+  .card-dark-theme {
+    background: #0f172a;
+    color: #ffffff;
+    border: 3px solid #000000;
+    box-shadow: 6px 6px 0px #000000;
   }
 
-  .rate-note {
-    font-size: 0.85rem;
-    color: var(--text-muted);
+  .card-dark-theme .card-service-title {
+    color: #ffffff;
   }
 
-  /* Features List */
-  .service-features-wrap {
-    margin-bottom: 28px;
+  .card-dark-theme .card-service-desc {
+    color: #cbd5e1;
   }
 
-  .features-heading {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
+  .card-dark-theme .card-checklist li {
+    color: #f1f5f9;
+  }
+
+  /* Top Icon Box */
+  .card-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    border: 2px solid var(--border-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 0px #000;
+  }
+
+  .card-service-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.25;
     margin-bottom: 12px;
+    color: var(--text-dark);
   }
 
-  .features-columns {
+  .card-service-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  /* Checklist Bullets */
+  .card-checklist {
     list-style: none;
     padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    margin: 0 0 28px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
   }
 
-  .features-columns li {
+  .card-checklist li {
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-dark);
     line-height: 1.4;
   }
 
-  .features-columns svg {
+  .card-checklist svg {
     flex-shrink: 0;
-    color: var(--brand-red);
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
-  /* Specialty Cards Grid */
-  .specialty-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 28px;
+  /* Action Buttons */
+  .card-btn-wrap {
+    margin-top: auto;
   }
 
-  .specialty-card {
-    background: var(--bg-cream-dark);
-    border: 2px solid var(--border-dark);
-    padding: 20px;
-  }
-
-  .specialty-title {
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-    margin-bottom: 8px;
-    color: var(--text-dark);
-  }
-
-  .specialty-text {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-  }
-
-  /* Service Actions */
-  .service-actions {
-    margin-top: 24px;
-  }
-
-  .service-cta-btn {
-    display: inline-flex;
+  .card-action-btn {
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    padding: 12px 24px;
-    font-size: 1.1rem;
+    width: 100%;
+    padding: 12px 16px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
     text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid var(--border-dark);
+    box-shadow: 3px 3px 0px #000;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-align: center;
   }
 
-  /* FAQ Section */
-  .faq-section {
-    padding: 60px 0;
-    background: var(--bg-cream-dark);
-    border-top: 3px solid var(--border-dark);
-    border-bottom: 3px solid var(--border-dark);
+  .card-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0px #000;
   }
 
-  .section-title h2 {
-    font-size: 3rem;
-    margin-top: 10px;
-    margin-bottom: 8px;
-  }
-
-  .sub-text {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 0 auto 40px;
-  }
-
-  .faq-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
-
-  .faq-card {
-    background: #ffffff;
-    padding: 28px;
-  }
-
-  .faq-question {
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    margin-bottom: 10px;
+  .btn-light-cta {
+    background: #f8fafc;
     color: var(--text-dark);
   }
 
-  .faq-answer {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.6;
+  .btn-light-cta:hover {
+    background: var(--brand-red);
+    color: #ffffff;
+  }
+
+  .btn-dark-cta {
+    background: #f97316;
+    color: #000000;
+  }
+
+  .btn-dark-cta:hover {
+    background: #ea580c;
+    color: #ffffff;
+  }
+
+  .btn-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.15s ease;
+  }
+
+  .card-action-btn:hover .btn-arrow {
+    transform: translateX(4px);
   }
 
   /* Bottom CTA */
@@ -678,15 +460,16 @@ const faqs = [
     flex-wrap: wrap;
   }
 
-  @media (max-width: 860px) {
-    .features-columns,
-    .specialty-grid,
-    .faq-grid {
-      grid-template-columns: 1fr;
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .services-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
 
-    .service-block {
-      padding: 24px;
+  @media (max-width: 680px) {
+    .services-cards-grid {
+      grid-template-columns: 1fr;
     }
 
     .header-title {
