@@ -13,6 +13,8 @@ const navItems = [
   { id: 'pickup-and-delivery', label: 'Pickup & Delivery (Coming Soon)', href: '/pickup-and-delivery' },
   { id: 'location', label: 'Hours & Location', href: '/location' },
 ];
+
+const desktopNavItems = navItems.filter((item) => item.id !== 'location');
 ---
 
 <header class="header-root">
@@ -62,7 +64,7 @@ const navItems = [
   <nav class="nav-bar desktop-only">
     <div class="container nav-container">
       <div class="nav-links">
-        {navItems.map((item) => (
+        {desktopNavItems.map((item) => (
           <a
             href={item.href}
             class={`nav-link ${activeTab === item.id ? 'active' : ''}`}
