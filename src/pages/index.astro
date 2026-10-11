@@ -2,6 +2,34 @@
 import Layout from '../layouts/Layout.astro';
 import AmenityClothesline from '../components/AmenityClothesline.astro';
 import PhotoGallery from '../components/PhotoGallery.astro';
+
+const heroSlides = [
+  {
+    src: '/images/laskeys-laundry-building.webp',
+    alt: "Laskey's Laundry Storefront Building at 3330 W Laskey Rd, Toledo, OH",
+    caption: '3330 W LASKEY RD, TOLEDO, OH 43623',
+  },
+  {
+    src: '/images/IMG_7078.webp',
+    alt: "High-capacity commercial washer banks at Laskey's Laundry",
+    caption: 'HEAVY-DUTY COMMERCIAL WASHERS',
+  },
+  {
+    src: '/images/IMG_7082.webp',
+    alt: "80lb mega washers for comforters and large family loads",
+    caption: '80LB COMFORTER WASHERS',
+  },
+  {
+    src: '/images/IMG_7077.webp',
+    alt: 'Clean stainless steel stacked dryers and folding tables',
+    caption: 'EXPRESS STACKED DRYERS',
+  },
+  {
+    src: '/images/IMG_7079.webp',
+    alt: 'Spacious folding tables and rolling laundry carts',
+    caption: 'SPACIOUS FOLDING TABLES',
+  },
+];
 ---
 
 <Layout title="Laskey's Laundry - Toledo's Neighborhood Laundromat, Wash & Fold & Delivery" activeTab="home">
@@ -43,17 +71,48 @@ import PhotoGallery from '../components/PhotoGallery.astro';
         </div>
       </div>
 
-      <!-- Hero Polaroid Photo -->
+      <!-- Hero Polaroid Photo Slider -->
       <div class="hero-photo-col">
-        <div class="polaroid-frame hero-polaroid">
+        <div class="polaroid-frame hero-polaroid" id="hero-polaroid-frame">
           <div class="polaroid-tape"></div>
-          <div class="hero-img-wrap">
-            <img
-              src="/images/laskeys-laundry-building.webp"
-              alt="Laskey's Laundry Storefront Building at 3330 W Laskey Rd, Toledo, OH"
-            />
+          
+          <div class="hero-img-wrap" id="hero-slider" aria-roledescription="carousel" aria-label="Laskey's Laundry Photos">
+            {heroSlides.map((slide, index) => (
+              <img
+                src={slide.src}
+                alt={slide.alt}
+                class={`hero-slide-img ${index === 0 ? 'active' : ''}`}
+                data-index={index}
+                data-caption={slide.caption}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'auto'}
+              />
+            ))}
+
+            <button type="button" class="slider-arrow prev-arrow" id="hero-slider-prev" aria-label="Previous photo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button type="button" class="slider-arrow next-arrow" id="hero-slider-next" aria-label="Next photo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
           </div>
-          <div class="polaroid-caption font-bebas">3330 W LASKEY RD, TOLEDO, OH 43623</div>
+
+          <div class="hero-polaroid-bottom">
+            <div id="hero-polaroid-caption" class="polaroid-caption font-bebas">{heroSlides[0].caption}</div>
+            
+            <div class="hero-slider-dots" role="tablist" aria-label="Photo carousel navigation">
+              {heroSlides.map((slide, index) => (
+                <button
+                  type="button"
+                  class={`hero-dot ${index === 0 ? 'active' : ''}`}
+                  data-slide-index={index}
+                  role="tab"
+                  aria-selected={index === 0 ? 'true' : 'false'}
+                  aria-label={`View photo ${index + 1}: ${slide.caption}`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -222,19 +281,141 @@ import PhotoGallery from '../components/PhotoGallery.astro';
     transform: rotate(2.5deg);
     max-width: 480px;
     margin: 0 auto;
+    position: relative;
+    padding: 14px 14px 20px 14px;
+    user-select: none;
   }
 
   .hero-img-wrap {
+    position: relative;
     height: 320px;
-    background: #e5e5e5;
+    background: #1c1917;
     overflow: hidden;
+    border-radius: 2px;
   }
 
-  .hero-img-wrap img {
+  .hero-slide-img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .hero-slide-img.prev-slide {
+    opacity: 1;
+    z-index: 2;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .hero-slide-img.active {
+    opacity: 1;
+    z-index: 3;
+    pointer-events: auto;
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  /* Slider Navigation Arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid var(--border-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0;
+  }
+
+  .slider-arrow:hover {
+    background: #ffffff;
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .prev-arrow {
+    left: 10px;
+  }
+
+  .next-arrow {
+    right: 10px;
+  }
+
+  .hero-polaroid:hover .slider-arrow,
+  .hero-polaroid:focus-within .slider-arrow {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .slider-arrow {
+      opacity: 0.85;
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* Polaroid Caption & Navigation Dots */
+  .hero-polaroid-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+  }
+
+  .polaroid-caption {
+    font-size: 1.15rem;
+    letter-spacing: 1.5px;
+    color: var(--text-dark);
+    text-align: center;
+    transition: opacity 0.25s ease;
+    min-height: 1.4em;
+  }
+
+  .polaroid-caption.caption-fade {
+    opacity: 0;
+  }
+
+  .hero-slider-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .hero-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 2px solid var(--border-dark);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .hero-dot:hover {
+    background: var(--text-dark);
+  }
+
+  .hero-dot.active {
+    background: var(--primary);
+    border-color: var(--border-dark);
+    transform: scale(1.25);
   }
 
   /* SERVICES SPOTLIGHT */
@@ -404,3 +585,133 @@ import PhotoGallery from '../components/PhotoGallery.astro';
     }
   }
 </style>
+
+<script>
+  function initHeroSlider() {
+    const frame = document.getElementById('hero-polaroid-frame');
+    if (!frame) return;
+
+    const slides = Array.from(frame.querySelectorAll('.hero-slide-img'));
+    const dots = Array.from(frame.querySelectorAll('.hero-dot'));
+    const captionEl = document.getElementById('hero-polaroid-caption');
+    const prevBtn = document.getElementById('hero-slider-prev');
+    const nextBtn = document.getElementById('hero-slider-next');
+
+    if (slides.length <= 1) return;
+
+    let currentIndex = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const intervalMs = 4500;
+
+    function showSlide(newIndex: number) {
+      if (newIndex === currentIndex) return;
+
+      const prevIndex = currentIndex;
+      currentIndex = (newIndex + slides.length) % slides.length;
+
+      // Update slide classes for smooth crossfade
+      slides.forEach((slide, i) => {
+        slide.classList.remove('active', 'prev-slide');
+        if (i === prevIndex) {
+          slide.classList.add('prev-slide');
+        } else if (i === currentIndex) {
+          slide.classList.add('active');
+        }
+      });
+
+      // Update caption with subtle fade
+      if (captionEl) {
+        captionEl.classList.add('caption-fade');
+        setTimeout(() => {
+          captionEl.textContent = slides[currentIndex].getAttribute('data-caption') || '';
+          captionEl.classList.remove('caption-fade');
+        }, 200);
+      }
+
+      // Update dots
+      dots.forEach((dot, i) => {
+        const isActive = i === currentIndex;
+        dot.classList.toggle('active', isActive);
+        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    function startTimer() {
+      stopTimer();
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      timer = setInterval(nextSlide, intervalMs);
+    }
+
+    function stopTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    // Controls
+    prevBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prevSlide();
+      startTimer();
+    });
+
+    nextBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nextSlide();
+      startTimer();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetIndex = parseInt(dot.getAttribute('data-slide-index') || '0', 10);
+        showSlide(targetIndex);
+        startTimer();
+      });
+    });
+
+    // Pause on hover
+    frame.addEventListener('mouseenter', stopTimer);
+    frame.addEventListener('mouseleave', startTimer);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    frame.addEventListener('touchstart', (e: TouchEvent) => {
+      touchStartX = e.changedTouches[0].screenX;
+      stopTimer();
+    }, { passive: true });
+
+    frame.addEventListener('touchend', (e: TouchEvent) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diffX = touchEndX - touchStartX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      startTimer();
+    }, { passive: true });
+
+    // Start auto slider
+    startTimer();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroSlider);
+  } else {
+    initHeroSlider();
+  }
+</script>
